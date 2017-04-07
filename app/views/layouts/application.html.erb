@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Cleartranscripts v2.6.1, cleartranscripts.com">
+    <link rel="shortcut icon" href="assets/images/discover-mobile-350x350-16.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Slackey" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Wallpoet" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Slackey">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title><%= content_for?(:title) ? yield(:title) : "ClearTranscripts" %></title>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  </head>
+  <body>
+    <% unless request.path =~ /users\/*/ %>
+        <%= render "layouts/header" %>
+    <% end %>
+    <%= yield %>
+    <% unless request.path =~ /users\/*/ %>
+        <%= render "layouts/footer" %>
+    <% end %>
+   <!-- <script src="https://maps.googleapis.com/maps/api/js"></script>-->
+  </body>
+</html> 

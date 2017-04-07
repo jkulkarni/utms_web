@@ -1,0 +1,2 @@
+class AutofillAddress < ApplicationRecord
+end

@@ -1,0 +1,84 @@
+<section style="padding-top: 8%; padding-left: 40px; background-color: white;">
+  <br/>
+  <br/>
+
+  <div class="container-fluid">
+    <div class="row main-row" >
+      <div class="col-xs-12 col-sm-6 col-md-8">
+
+        <% if @orders.nil? %>
+            <h2>No orders in your application packet!</h2>
+        <% else %>
+          <table class="table table-condensed table-bordered">
+          <% @orders.each do |order| %>
+          <tr><td>Order ID</td><td><%=order.order_id%></td></tr>
+          <tr><td>Payment Status</td><td><%=order.nil? ? '': order.payment_status||''%></td></tr>
+          <tr><td>Fulfillment Status</td><td><%=order.nil? ? '': order.fulfillment_status||''%></td></tr>
+          <tr>
+            <td>Applications</td>
+            <td>
+              <%current_currency = order.currency%>
+              <% for order_item in order.order_items%>
+                  <table id="gradient-style" class="table table-condensed">
+                    <tbody>
+                      <tr>
+                        <td><b>Document Request id:</b></td>
+                        <td><b><%= order_item.transcript_application.id %></b></td>
+                      </tr>
+                      <tr>
+                        <td>University:</td>
+                        <td><%= order_item.transcript_application.university_name %></td>
+                      </tr>
+                      <tr>
+                        <td>Applicant name:</td>
+                        <td><%= order_item.transcript_application.student_name%></td>
+                      </tr>
+                      <tr>
+                         <td>College:</td>
+                         <td><span ><%= order_item.transcript_application.college_name %></span></td>
+                      </tr>
+                      <tr>
+                         <td>Course:</td>
+                         <td><%= order_item.transcript_application.course_name %></td>
+                      </tr>
+                      <tr>
+                         <td>Quantity:</td>
+                         <td><%= order_item.transcript_application.quantity.to_i %></td>
+                      </tr>
+                      <tr>
+                        <td>Total fee:</td>
+                        <td><%= current_currency %><%= order_item.transcript_application.total %></td>
+                      </tr>
+                      <tr>
+                         <td>Fee breakup:</td>
+                         <td>Service Tax: <%= current_currency %><%= order_item.transcript_application.service_tax %> | Service charge: <%= current_currency %><%= order_item.transcript_application.service_charge %> | Shipping fee: <%= current_currency %><%= order_item.transcript_application.shippingFee %></td>
+                      </tr>
+                      <tr>
+                        <td>Shipping Addresses:</td>
+                        <td></td>
+                      </tr>
+                      <% order_item.transcript_application.shipping_addresses.each do |address| %>
+                      <tr>
+                        <td>Number of sets:&nbsp;<%=address.no_of_sets%></td>
+                        <td>To:&nbsp;<%=address.name%>, <%=address.address_line1%>, <%=address.address_line2%>, <%=address.city%>, <%=address.state_province_region%>, <%=address.zip_or_postal_code%>, <%=@countries.where(:country_id => address.country_id).pluck(:name).first%>. Phone: <%=address.phone%></td>
+                      </tr>
+                      <% end %>
+                      <tr>
+                        <td>Delivery Status:</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              <% end %>
+          </td>
+        </tr>
+        <tr style="background: lightgray;"><td colspan="2"></td></tr>
+        <% end %>
+        </table>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+</section>

@@ -1,0 +1,27 @@
+I"®(function() {
+  $(window).load(function() {
+    var colleges;
+    $('#transcript_application_course').parent().hide();
+    $("[for=transcript_application_course]").hide();
+    colleges = $('#transcript_application_college_id').html();
+    return $('#transcript_application_university_id').change(function() {
+      var escaped_university, options, university;
+      university = $('#transcript_application_university_id').find('option:selected').text();
+      escaped_university = university.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+      options = $(colleges).filter("optgroup[label='" + university + "']").html();
+      if (options) {
+        $('#transcript_application_college_id').html(options);
+        $('#transcript_application_college_id').parent().show();
+        $("[for=transcript_application_college_id]").show();
+        $('#transcript_application_course').parent().show();
+        return $("[for=transcript_application_course]").show();
+      } else {
+        $('#transcript_application_college_id').empty();
+        $('#transcript_application_college_id').parent().hide();
+        return $("[for=transcript_application_college_id]").hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET

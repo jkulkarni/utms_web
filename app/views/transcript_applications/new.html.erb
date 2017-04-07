@@ -1,0 +1,294 @@
+
+
+<section style="padding: 10%">
+
+  <div class="panel panel-default">
+    <div class="panel-heading text-center rounded mx-auto d-block">
+
+      <% if @university.banner_image %>
+      <%= image_tag "/assets/"+@university.banner_image, :align => 'center', :class=> "img-fluid"%>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <%= bootstrap_form_for @transcript_application, layout: :horizontal do |f| %>
+          <!--<div class="app-headers"></div>-->
+          <%= f.text_field :student_name, :label => 'Name (as in student records)',  placeholder: "Full name", :style => 'text-transform:capitalize'%>
+    <!--      <%= f.text_field :college_name, placeholder: "College name", :label => 'College', :style => 'text-transform:capitalize' %>-->
+          <%= f.text_field :register_number, :label => 'HT/USN/Roll/Register number', placeholder: "Enter register number" %>
+          <%= f.collection_select :course_name, Course.all, :name, :name,{ include_blank: true, :label => 'Course' }, { class: 'chosen-select', :data => { :placeholder => ' ' }}   %>
+          <%= f.select :ndocs,
+                       [['1'],['2'],['3'],['4'],['5'],['6'],['7'],['8'],['9'],['10'],['11'],['12'],['13'],['14'],['15'],['16'],['17'],['18'],['19'],['20'],['21'],['22'],['23'],['24'],['25']],
+                       {:label => "Number of Documents Issued"},{:onchange => 'TranscriptApplications_updateAdvice()'}
+
+          %>
+          <%= f.date_select :enrollment_year, :discard_month =>   true, :discard_day => true, :start_year => 1965, :default => {:day => nil, :month => nil, :year => Date.today.year } %>
+          <%= f.date_select :completion_year, :discard_month =>   true, :discard_day => true, :start_year => 1965, :default => {:day => nil, :month => nil, :year => Date.today.year } %>
+          <%= f.select :quantity,
+                             [['1'],['2'],['3'],['4'],['5'],['6'],['7'],['8'],['9'],['10'],['11'],['12'],['13'],['14'],['15'],['16'],['17'],['18'],['19'],['20'],['21'],['22'],['23'],['24'],['25']],
+                             {:label => "Number of sets"},{:onchange => 'TranscriptApplications_updateAdvice()'} %>
+
+              <!--<div class="app-headers">Shipping details</div>-->
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Shipping Address</h3>
+            </div>
+            <div class="panel-body">
+              <div id="shipping_addressses">
+                <!--<h3>Shipping Address</h3>-->
+                <%= f.fields_for :shipping_addresses do |ff| %>
+                    <%= render 'shipping_address_fields', f: ff %>
+                <% end %>
+                <div class="links">
+                  <%= link_to_add_association 'Add another address', f, :shipping_addresses %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Payment</h3></div>
+            <div class="panel-body">
+              <table width="50%">
+                <tr>
+                  <th class="col-md-4">Application fee</th>
+                  <td class="col-md-1 text-right"><%= current_currency_ruppee %><span id="_university_charge"></span></td>
+                  <input type="hidden" name="transcript_application[university_charge]" id="transcript_application_university_charge"/>
+                </tr>
+                <tr>
+                  <th class="col-md-4">Service charge</th>
+                  <td class="col-md-1 text-right"><%= current_currency_ruppee %><span id="_service_charge"><%= @service_charge%></span></td>
+                  <input type="hidden" name="transcript_application[service_charge]" id="transcript_application_service_charge"/>
+                </tr>
+                <tr>
+                  <th class="col-md-4">Service tax</th>
+                  <td class="col-md-1 text-right"><%= current_currency_ruppee %><span id="_service_tax"><%=@service_tax%></span></td>
+                  <input type="hidden" name="transcript_application[service_tax]" id="transcript_application_service_tax"/>
+                </tr>
+                <tr>
+                  <th class="col-md-4">Shipping fee</th>
+                  <td class="col-md-1 text-right"><%= current_currency_ruppee %><span id="_shippingFee"><%=@shippingFee%></span></td>
+                  <input type="hidden" name="transcript_application[shippingFee]" id="transcript_application_shippingFee"/>
+                </tr>
+                <tr>
+                  <th class="col-md-4">Total</th>
+                  <td class="col-md-1 text-right">
+                    <%= current_currency_ruppee %><span id="_total"><%= @total %></span>
+                  </td>
+                  <input type="hidden" name="transcript_application[total]" id="transcript_application_total"/>
+                </tr>
+
+              </table>
+            </div>
+          </div>
+          <%= f.submit "Add to application packet", class: "btn btn-primary active center"  %>
+          <%= link_to "View application packet", show_path, class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+
+  window.onload = function() {
+
+    TranscriptApplications_bind();
+
+
+    $('#shipping_addressses').on('cocoon:after-insert', function(e, insertedItem) {
+      // ... do something
+      TranscriptApplications_bind();
+    });
+
+    $('#shipping_addressses').on('cocoon:after-remove', function(e, insertedItem) {
+      // ... do something
+      TranscriptApplications_bind();
+    });
+
+    //TranscriptApplications_dynamic_update();
+  }
+
+
+  TranscriptApplications_dynamic_update = function() {
+    var hide_elements = "<%=@_DynamicUpdate%>";
+    var attr_array = new Object;
+    //alert(hide_elements);
+    attr_array['ndocs'] = 'transcript_application_ndocs';
+    attr_array['college'] = 'transcript_application_college';
+
+    if (hide_elements.length > 0) {
+      hide_elements_array = hide_elements.split("|");
+
+      for (index=0; index < hide_elements_array.length; index++){
+        //alert(attr_array[hide_elements_array[index]]);
+        if (attr_array.hasOwnProperty(hide_elements_array[index])) {
+          $(attr_array[hide_elements_array[index]]).hide();
+          document.getElementById(attr_array[hide_elements_array[index]]).style.display = 'none';
+          //alert(attr_array[hide_elements_array[index]]);
+        }
+      }
+
+    }
+  }
+
+  TranscriptApplications_bind = function() {
+    //alert('bind ');
+    $(".country-select").each(function(index, element) {
+      $(element).bind('change', TranscriptApplications_updateShippingAdvice);
+      //alert('binded');
+    });
+
+    $(".sets-field").each(function(index, element) {
+      $(element).bind('change', TranscriptApplications_updateShippingAdvice);
+      //alert('binded');
+    });
+
+    // Default entry
+    TranscriptApplications_updateShippingAdvice();
+    TranscriptApplications_updateAdvice();
+
+  }
+
+  TranscriptApplications_updateShippingAdvice = function() {
+
+
+    var shipping_fee = 0;
+
+
+    //alert("TranscriptApplications_updateShippingAdvice::country select");
+    //alert($('.country-select').size());
+    $(".country-select").each(function(index, element) {
+      country = $(element).val();
+      //alert(country);
+      switch(country) {
+        case '101':
+          //alert('India');
+          shipping_fee += 150;
+
+          break;
+
+        default:
+          shipping_fee += 1500;
+          break;
+
+      }
+
+
+    });
+
+
+    var service_charge = parseInt(document.getElementById('_service_charge').innerHTML);
+    var service_tax = parseInt(document.getElementById('_service_tax').innerHTML);
+    document.getElementById('_shippingFee').innerHTML = shipping_fee;
+    var total = service_charge + service_tax + shipping_fee;
+    //alert(service_charge + " " + service_tax + " " + shipping_fee + " " + total);
+    document.getElementById('_total').innerHTML = total;
+
+    document.getElementById('transcript_application_service_charge').value = service_charge;
+    document.getElementById('transcript_application_service_tax').value = service_tax;
+    document.getElementById('transcript_application_shippingFee').value = shipping_fee;
+    document.getElementById('transcript_application_total').value = total;
+
+    var qtySelect = document.getElementById('transcript_application_quantity');
+    var quantity = qtySelect.options[qtySelect.selectedIndex].value;
+
+
+    var sets = 0;
+    $(".sets-field").each(function(index, element) {
+      sets += parseInt($(element).val());
+    });
+
+    //alert(sets + " " + quantity);
+
+    if (quantity != sets){
+      qtySelect.selectedIndex = sets-1;
+      TranscriptApplications_updateAdvice();
+    }
+
+
+    //alert(shipping_fee);
+  }
+
+
+  TranscriptApplications_updateAdvice = function() {
+    var fee_formula = "<%=@university.university_detail.fee_formula%>";
+    var ndocsSelect = document.getElementById('transcript_application_ndocs');
+    var ndocs = ndocsSelect.options[ndocsSelect.selectedIndex].value;
+    var qtySelect = document.getElementById('transcript_application_quantity');
+    var qty = qtySelect.options[qtySelect.selectedIndex].value;
+
+    var currentTime = new Date();
+    var year = currentTime.getFullYear();
+    var fromyearSelect = document.getElementById('transcript_application_enrollment_year_1i');
+    var fromyear = fromyearSelect.options[fromyearSelect.selectedIndex].value;
+    var toyearSelect = document.getElementById('transcript_application_completion_year_1i');
+    var toyear = toyearSelect.options[toyearSelect.selectedIndex].value;
+    var yearsFromGraduation = year - toyear;
+    var universityFee = eval(fee_formula);
+    //alert(universityFee);
+
+    document.getElementById('_university_charge').innerHTML = universityFee;
+    var service_charge = parseInt(document.getElementById('_service_charge').innerHTML);
+    var service_tax = parseInt(document.getElementById('_service_tax').innerHTML);
+    var shipping_fee = parseInt(document.getElementById('_shippingFee').innerHTML);
+    var total = universityFee + service_charge + service_tax + shipping_fee;
+    document.getElementById('_total').innerHTML = total;
+
+    // set the hidden input elements
+    document.getElementById('transcript_application_university_charge').value = universityFee;
+    document.getElementById('transcript_application_service_charge').value = service_charge;
+    document.getElementById('transcript_application_service_tax').value = service_tax;
+    document.getElementById('transcript_application_shippingFee').value = shipping_fee;
+    document.getElementById('transcript_application_total').value = total;
+  }
+
+  TranscriptApplications_autofillAddress = function(element) {
+    //alert(element.id);
+
+    var general_id = 'transcript_application_shipping_addresses_attributes_';
+    var ids = element.id.split(general_id);
+    var address_id = ids[1].split('_')[0];
+
+    var name_id = general_id + address_id + '_name';
+    var address_line1_id = general_id + address_id + '_address_line1';
+    var address_line2_id = general_id + address_id + '_address_line2';
+    var city_id = general_id + address_id + '_city';
+    var state_province_region_id = general_id + address_id + '_state_province_region';
+    var country_id_id = general_id + address_id + '_country_id';
+    var zip_or_postal_code_id = general_id + address_id + '_zip_or_postal_code';
+    var no_of_sets = general_id + address_id + '_no_of_sets';
+
+    var autofill_key = $(element).val();
+    //alert(autofill_key);
+    $.ajax({
+      url: "/transcript_applications/autofill",
+      data: {
+        term: autofill_key
+      },
+      success: function (data) {
+        //alert(data);
+        autofill = JSON.parse(data);
+        //alert(autofill.result);
+        if(autofill.result == "success") {
+          document.getElementById(name_id).value = autofill.address.name;
+          document.getElementById(address_line1_id).value = autofill.address.address_line1;
+          document.getElementById(address_line2_id).value = autofill.address.address_line2;
+          document.getElementById(city_id).value = autofill.address.city;
+          $("#"+country_id_id).val(autofill.address.country_id);
+          document.getElementById(state_province_region_id).value = autofill.address.state_province_region;
+          document.getElementById(zip_or_postal_code_id).value = autofill.address.zip_or_postal_code;
+
+          TranscriptApplications_updateShippingAdvice();
+
+        }
+        else{
+          //alert(autofill.result);
+        }
+
+      }
+    });
+
+  }
+
+
+
+</script>

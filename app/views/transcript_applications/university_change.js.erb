@@ -1,0 +1,40 @@
+$( "input[name='transcript_application[university_charge]']").val(<%= @ddAmount %>);
+$( "input[name='transcript_application[service_charge]']").val(<%= @service_charge %>);
+$( "input[name='transcript_application[service_tax]']").val(<%= @service_tax %>);
+$( "input[name='transcript_application[shippingFee]']").val(<%= @shippingFee %>);
+$( "input[name='transcript_application[total]']").val(<%= @total %>);
+<% if @nri %>
+$('div#nri').show();
+<% else %>
+$('div#nri').hide();
+<% end %>
+<% if @foriegnNational %>
+$('div#foriegnNational').show();
+<% else %>
+$('div#foriegnNational').hide();
+<% end %>
+<% if @studiedAbroad %>
+$('div#studiedAbroad').show();
+<% else %>
+$('div#studiedAbroad').hide();
+<% end %>
+<% if @consolidatedMemo %>
+$('div#consolidatedMemo').show();
+<% else %>
+$('div#consolidatedMemo').hide();
+<% end %>
+<% if @degreecertificate %>
+$('div#degreecertificate').show();
+<% else %>
+$('div#degreecertificate').hide();
+<% end %>
+<% if @wesForm %>
+$('div#wesForm').show();
+<% else %>
+$('div#wesForm').hide();
+<% end %>
+<% if @syllabusRequired %>
+$('div#syllabusRequired').show();
+<% else %>
+$('div#syllabusRequired').hide();
+<% end %>

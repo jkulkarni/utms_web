@@ -1,0 +1,36 @@
+<%
+  merchantData=""
+  working_key="5C08131DBEE7990F7F48392F6FB34A37"    #Put in the 32 Bit Working Key provided by CCAVENUES.  
+  access_code="AVKH64DD78AO32HKOA"    #Put in the Access Code in quotes provided by CCAVENUES.
+  
+  params.each do |key,value|
+      merchantData += key+"="+value+"&" 
+  end
+  crypto = Crypto.new
+  encrypted_data = crypto.encrypt(merchantData,working_key)
+%>
+<section style="padding-top: 8%; padding-left: 40px; background-color: white;">
+    <br/>
+    <br/>
+
+    <div class="container-fluid">
+      <div class="row main-row" >
+        <center>
+
+        <form method="POST" id="ctform" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction">
+          <input type="hidden" name="encRequest" value="<%=encrypted_data%>" />
+          <input type="hidden" name="access_code" value="<%=access_code%>" />
+        </form>
+        </center>
+      </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+  window.onload = function() {
+    //alert('ctform');
+    $("#ctform").submit();
+  }
+</script>
+

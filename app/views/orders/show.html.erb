@@ -1,0 +1,583 @@
+
+<style>
+h1.cart-heading
+	{
+	font-family: sans-serif;
+font-weight: 900;
+border-top: 1px solid black;
+border-bottom: 1px solid black;
+color: #2e2e2e;
+font-size: 16px;
+padding: 16px;
+margin-bottom: 0px;
+	}
+span.floatRight
+{
+	float: right;
+}
+select#currency
+{
+display:inline-block;
+position:relative;
+margin:1em;
+padding:10px 30px;
+border:2px solid black;
+overflow:hidden;
+text-decoration:none;
+font-size:14px;
+outline:none;
+color:azure;
+background:transparent;
+font-family:'Titillium Web', sans-serif;
+font-weight:700;
+background-color: grey;
+margin: 15px;
+font-size: large;
+text-align: center;
+vertical-align: middle;
+line-height: 1.42857143;
+border-radius: 4px;
+font: inherit;
+text-align: center;
+}
+input#coupon
+{
+margin:1em;
+padding:10px 30px;
+border:2px solid black;
+font-size:14px;
+font-weight:700;
+}
+.proceed-button {
+display:inline-block;
+position:relative;
+margin:1em;
+padding:10px 20px;
+border:2px solid black;
+overflow:hidden;
+text-decoration:none;
+outline:none;
+color:azure;
+background:transparent;
+font-family:'Titillium Web', sans-serif;
+font-weight:700;
+background-color: grey;
+border-radius: 3px; font-size: 20px;
+text-decoration:none;
+}
+.proceed-button:hover
+{
+color: #1673e6;
+background-color: orange;
+				box-shadow: white 	 0 0px 0px 40px inset;
+}
+select#currency:hover
+{
+color: grey;
+background-color: orange;
+				box-shadow: white 	 0 0px 0px 40px inset;
+}
+a#proceed-btn:hover
+{
+color: #1673e6;
+background-color: orange;
+				box-shadow: white 	 0 0px 0px 40px inset;
+}
+.proceed-button span {
+-webkit-transition:0.4s;
+-moz-transition:0.4s;
+-o-transition:0.4s;
+transition:0.4s;
+}
+.proceed-button:before, .proceed-button:after {
+content:'';
+position:absolute;
+top:10px;
+left:0;
+width:100%;
+text-align:center;
+opacity:0;
+-webkit-transition:.4s;
+-moz-transition:.4s;
+-o-transition:.4s;
+transition:.4s;
+}
+.proceed-button:before {
+content:attr(data-hover);
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+}
+.proceed-button:hover span, .proceed-button:active span {
+opacity:0;
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+}
+.proceed-button:hover:before, .proceed-button:active:after {
+opacity:1;
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+-webkit-transition-delay:.4s;
+-moz-transition-delay:.4s;
+-o-transition-delay:.4s;
+transition-delay:.4s;
+}
+.proceed-button:active:before {
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+-webkit-transition-delay:0s;
+-moz-transition-delay:0s;
+-o-transition-delay:0s;
+transition-delay:0s;
+}
+div.proceed-wrapper {
+text-align: center;
+border-bottom: 1px solid black;
+}
+i.fa
+{
+	padding-left: 5px;
+}
+.btn-circle {
+width: 30px;
+height: 30px;
+font-size: 12px;
+border-radius: 5px;
+right: 25px;
+position: absolute;
+background-color: black;
+padding: 6px 0px;
+opacity: .4;
+margin-top: 4%;
+margin-right: 4%;
+color: white;
+}
+div.desc-box
+{
+	border-bottom: 3px solid black;
+}
+h4#app-id
+{
+	font-family: sans-serif;
+font-weight: 600;
+font-size: x-large;
+	align-self: center;
+	letter-spacing: 3px;
+}
+div#univ-detail
+{
+	
+}
+div#amount-charged
+{
+	border-top: 1px solid black;
+}
+div.cart-content
+{
+}
+div.main-row
+{
+	margin-top: 10px;
+}
+div.content-row
+{
+	/*background-color:beige;*/
+	border: 2px solid grey;
+	margin: 10px;
+	padding-left: 20px;
+}
+p.total-price
+{
+	border-top: 2px solid black;
+	padding-top: 10px;
+	font-weight: 900;
+	width: 200%;
+}
+div.summary-box
+{
+	
+	border: 2px grey;
+	padding: 10px;
+	padding-left: 20px;
+}
+div.summary-col
+{
+	margin: 10px;
+}
+div.coupon-box
+{
+		text-align: center;
+		padding: 20px;
+		align-self: center;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		margin-bottom: 20px;
+		background-color: lightgray;
+}
+div.check-out
+{
+		text-align: center;
+		padding: 20px;
+		align-self: center;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		margin-top: 20px;
+		background-color: lightgray;
+}
+div.currency-box
+{
+		text-align: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		align-self: center;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		margin-bottom: 15px;
+		font-size:large;
+		font-weight:700;
+    background-color: lightgray;
+}
+.pay-btn
+{
+	background-color: black;
+	color: white;
+}
+a#proceed-btn
+{
+	float: none;
+	background-color: grey;
+	border:2px solid black;
+	font-weight: 700;
+}
+a.proceed-button
+{
+	text-decoration:none;
+}
+#gradient-style tr td
+{
+	font-size: 80%;
+	color: black;
+	padding: 1%; 
+}
+
+</style>
+<section style="padding-top: 8%; padding-left: 40px; background-color: white;">
+    <br/>
+    <br/>
+		<% if !@order_item.nil? && @order_item.errors.any? %>
+		<div class="alert alert-danger">
+			<ul>
+				<% @order_item.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<% if @order_items.size == 0 %>
+		<p class="text-center">
+			There are no items in your document request packet. Please
+			<%= link_to "go back", root_path %>
+			and add documents to your packet.
+		</p>
+		<% else %>
+		<div class="container-fluid">
+			<div class="row main-row" >
+				<div class="col-md-2"></div>
+				<div class="col-md-5 cart-content">
+					<% for order_item in @order.order_items %>
+            <div id="panel_<%=order_item.id%>" class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  Document Request id <%= order_item.transcript_application.id %>
+                </h3>
+                <span id="span_<%=order_item.id%>" class="pull-right clickable" data-effect="slideUp" onclick="click_close(this)" data-orderitem="<%=order_item.id%>">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </span>
+              </div>
+              <div class="panel-body">
+                  <div id="dialog-confirm_<%=order_item.id%>" title="Delete the application" style="display:none;">
+                      <p><span class="ui-icon ui-icon-alert"  style="float:left; margin:12px 12px 20px 0;"></span>Are you sure to delete this application from the packet?</p>
+                  </div>
+                  <div class="content-row">
+                  </p>
+                  <div id="app-detail" style="padding-top: 3%; padding-left: 6%; padding-bottom: 3%;">
+                    <table id="gradient-style" class="table table-condensed">
+                      <tbody>
+                        <!--<tr>
+                          <td>
+                            Institution:
+                          </td>
+                          <td>
+                            <%= order_item.transcript_application.university_name %>
+                          </td>
+                        </tr>-->
+                        <tr>
+                          <td>
+                            City:
+                          </td>
+                          <td>
+                            <% location = Location.where(:id => order_item.transcript_application.location_id).pluck(:name).first%>
+                            <%= location %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Applicant name:
+                          </td>
+                          <td>
+                            <%= order_item.transcript_application.student_name%>
+                          </td>
+                        </tr>
+                        <% unless order_item.transcript_application.college_name.blank? %>
+                        <tr>
+                          <td>
+                            College:
+                          </td>
+                          <td>
+                            <span ><%= order_item.transcript_application.college_name %></span>
+                          </td>
+                        </tr>
+                        <% end %>
+                        <tr>
+                          <td>
+                            Course:
+                          </td>
+                          <td>
+                            <%= order_item.transcript_application.course_name %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Number of sets:
+                          </td>
+                          <td>
+                            <%= order_item.transcript_application.quantity.to_i %>
+                          </td>
+                        </tr>
+                       <!-- <tr>
+                          <td>
+                            University fee:
+                          </td>
+                          <td>
+                            <%= current_currency %>
+                            <%= order_item.transcript_application.university_charge%>
+                          </td>
+                        </tr>-->
+                        <tr>
+                          <td>
+                            Service tax:
+                          </td>
+                          <td>
+                            <%= current_currency %>
+                            <%= order_item.transcript_application.service_tax %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Service charge:
+                          </td>
+                          <td>
+                            <%= current_currency %>
+                            <%= order_item.transcript_application.service_charge %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Shipping fee:
+                          </td>
+                          <td>
+                            <%= current_currency %>
+                            <%= order_item.transcript_application.shippingFee %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 100%; font-weight: 900; ">
+                            Total fee:
+                          </td>
+                          <td style="font-size: 100%; font-weight: 900;">
+                            <%= current_currency %>
+                            <%= order_item.transcript_application.total %>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+				  <% end %>
+				
+			</div>
+			<div class="col-md-3 summary-col" >
+				<div class="row">
+					<div class="coupon-box" style="zoom: 80%;">
+						<!-- 		<button class="proceed-button" type="button" data-hover="ENTER CODE"><span class="proceed-text"></span></button>
+						-->
+						<%= form_tag show_path do %>
+						<%= text_field_tag :coupon, params[:coupon] %>
+						<%= submit_tag "APPLY COUPON", class: "btn btn-large proceed-button proceed-text " %>
+						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="currency-box" style="zoom: 80%;">
+						<%= form_tag show_path do %>
+						<%= select_tag "currency", options_for_select([ "PAY IN INR", "PAY IN USD" ], @current_currency ), :onchange => "this.form.submit()" %>
+						<% end %>
+					</div>
+				</div>
+        <div id="panel_summary-box" class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">SUMMARY</h3>
+          </div>
+          <div class="panel-body">
+            <% @order_items.each do |order_item| %>
+                <table class="table table-condensed">
+                  <tbody>
+                  <tr>
+                    <td>
+                      From Institution:
+                    </td>
+                    <td>
+                      <%= order_item.transcript_application.student_name%>/<%=order_item.transcript_application.course_name%>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Total fee:
+                    </td>
+                    <td>
+                      <%= current_currency %>
+                      <%= order_item.transcript_application.total %>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+            <% end %>
+            <% if @discounted_total	.present? %>
+                <p class="text-muted " style="font-size: 120%; font-weight: 900; margin-left: 2%; color: black;">AMOUNT:
+                  <%= current_currency %>
+                  <span ><%= @total.round(2) %></span>
+                </p>
+                <p class="text-muted " style=" margin-left: 2%; color: black;">COUPON APPLIED:
+                  <span ><%= @coupon_code %></span>
+                </p>
+                <p class="text-muted " style="font-size: 120%; font-weight: 900; margin-left: 2%; color: black;">NET AMOUNT:
+                  <%= current_currency %>
+                  <span ><%= @discounted_total.round(2) %></span>
+                </p>
+
+            <% else %>
+                <p class="text-muted"   style="float: right; font-size: 120%; font-weight: 900; margin-left: 2%; color: black; padding-right: 15%;" >NET AMOUNT:
+                  <%= current_currency %>
+                  <span ><%= @total.round(2) %></span>
+                </p>
+            <% end %>
+          </div>
+        </div>
+					<div class="row">
+					<div class="check-out" style="zoom: 80%;">
+            <% if @current_currency == "PAY IN INR" || @current_currency == "INR" %>
+                <%= link_to "Proceed to pay",  {:controller => "payments", :action => "dataForm", :order_id => @order_id, :total => @total },:type =>"button", :class => "btn btn-lg pay-btn", :id => "proceed-btn" %>
+            <% else %>
+                <%= link_to "Checkout", {:controller => "payments", :action => "paypalRequestHandler", :order_id => @order_id, :total => @total },:type =>"button", :class => "btn btn-lg pay-btn", :id => "proceed-btn" %>
+            <% end %>
+        	</div>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<% end %>
+	</section>
+<section style=" background-color: white;" >
+	<div class="proceed-wrapper" style="padding: 20px; ">
+		<%= link_to "ADD MORE", root_path,:type =>"button", :class => "proceed-button"%>
+</div>
+</section>
+<section class="ctrans-section ctrans-section--relative ctrans-section--fixed-size ctrans-parallax-background" id="msg-box3-117" style="background-image: url(assets/imac-605421-1920-1920x1275-41.jpg);">
+<div class="ctrans-overlay" style="opacity: 0.8; background-color: white;"></div>
+<div class="ctrans-section__container container ctrans-section__container--first">
+	<div class="ctrans-header ctrans-header--wysiwyg row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h3 class="ctrans-header__text">PRICING AND REFUND POLICY</h3>			
+		</div>
+	</div>
+</div>
+<div class="ctrans
+	border-radius: 3px; font-size: 30px;-section__container container ctrans-section__container--middle">
+	<div class="row">
+		<div class="ctrans-article ctrans-article--wysiwyg col-sm-8 col-sm-offset-2"><ul  style="color: black;"><li>Clear transcripts is a reliable, trusted and fastest way used by thousands of applicants daily for getting official transcripts from their home universities in cost effective manner.
+			</li><li>You may select application packets and shipping addresses to get instant pricing for the same. <br></li></ul></div>
+		</div>
+	</div>
+	<div class="ctrans-section__container container ctrans-section__container--last">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			</div>
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript">
+
+  click_close  = function(element){
+
+    //alert('click-function');
+    var order_item = $(element).attr('data-orderitem');
+    //alert('dialog id '+'#dialog-confirm_'+order_item);
+
+/*
+    $('dialog-confirm_'+order_item).remove();
+    $(element).closest('panel-body').append("<div id='dialog-confirm_'+order_item title='Delete Application'></div>");
+*/
+
+    $('#dialog-confirm_'+order_item).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        Delete: function() {
+          $( this ).dialog( "close" );
+          window.location = "/order_items/delete_order?id="+order_item
+         /* $.ajax({
+            url: "/order_items/delete_order",
+            data_type: "jsonp",
+            data: {
+              id: order_item
+            },
+            success: function (data) {
+              $('#panel_'+order_item).slideUp();
+
+              result = JSON.parse(data);
+              alert(result.response.count);
+              // update the count display
+              document.getElementById('application_packet').innerHTML = 'Application Packet: ' + result.response.count;
+              //$('#application_packet').val(response.count);
+
+            }
+          });*/
+
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+
+  }
+
+</script>

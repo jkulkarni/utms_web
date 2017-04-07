@@ -1,0 +1,62 @@
+<% if !@order_item.nil? && @order_item.errors.any? %>
+<div class="alert alert-danger">
+  <ul>
+    <% @order_item.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% if @order_items.size == 0 %>
+<p class="text-center">
+  There are no items in your application packet cart.  Please <%= link_to "go back", root_path %> and add application packets to your cart.
+</p>
+<% else %>
+<div class="container">
+  <div class="page-header">
+  <h1>Applied application</h1></div>
+</div>
+<div class="container"></div>
+<div class="row">
+  <div id="application" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Application</div>
+  <div id="amount" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Amount</div>
+  <div id="quantity" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Quantity</div>
+</div>
+<% @order_items.each do |order_item| %>
+<div class="row">
+  <div id="application-content" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+    Application id <%= order_item.transcript_application.id %></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab veniam ut, iusto molestiae voluptatum consequatur id totam nostrum voluptate similique sed repellendus blanditiis. Recusandae et voluptates maxime, deleniti veniam eligendi.</p>
+  </div>
+  <div id="amount-content" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <h4 class="text-right">Processing weeks: <span style="color: green"><%=  order_item.transcript_application.processingWeeks %></span></h4>
+    <h4 class="text-right">University charge: <span style="color: green"><%= number_to_currency order_item.transcript_application.university_charge %></span></h4>
+    <h4 class="text-right">Service charge: <span style="color: green"><%= number_to_currency order_item.transcript_application.service_charge %></span></h4>
+    <h4 class="text-right">Service tax: <span style="color: green"><%= number_to_currency order_item.transcript_application.service_tax %></span></h4>
+    <h4 class="text-right">Shipping charge: <span style="color: green"><%= number_to_currency order_item.transcript_application.shippingFee %></span></h4>
+    <h4 class="text-right">Total Price: <span style="color: green"><%= number_to_currency order_item.transcript_application.total %></span></h4>
+  </div>
+  <div id="quantity-content" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <%= form_for order_item, remote: true do |f| %>
+                  <%= f.number_field :quantity, value: order_item.transcript_application.quantity.to_i, class: "form-control", min: 1 %>
+            <%= f.hidden_field :order_item_id, value: order_item.transcript_application.id %>
+            <%= f.submit "Update Quantity", class: "btn btn-info btn-sm fa fa-refresh" %>
+          </td>
+          <td class="actions" data-th="Delete">
+
+            <%= link_to "Delete", order_item, { data: { confirm: "Are you sure you wish to delete this application packet '#{order_item.transcript_application.id}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger btn-sm fa fa-trash-o" } %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+</div>
+<% end %>

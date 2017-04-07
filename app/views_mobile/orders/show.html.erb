@@ -1,0 +1,934 @@
+<style>
+h1.cart-heading
+	{
+	font-family: sans-serif;
+font-weight: 900;
+border-top: 1px solid black;
+border-bottom: 1px solid black;
+color: #2e2e2e;
+font-size: 16px;
+padding: 16px;
+margin-bottom: 0px;
+	}
+span.floatRight
+{
+	float: right;
+}
+select#currency
+{
+display:inline-block;
+position:relative;
+margin:1em;
+padding:10px 30px;
+border:2px solid black;
+overflow:hidden;
+text-decoration:none;
+font-size:14px;
+outline:none;
+color:azure;
+background:transparent;
+font-family:'Titillium Web', sans-serif;
+font-weight:700;
+background-color: grey;
+margin: 15px;
+font-size: large;
+text-align: center;
+vertical-align: middle;
+line-height: 1.42857143;
+border-radius: 4px;
+font: inherit;
+text-align: center;
+}
+input#coupon
+{
+margin:1em;
+padding:10px 30px;
+border:2px solid black;
+font-size:14px;
+font-weight:700;
+}
+.proceed-button {
+display:inline-block;
+position:relative;
+margin:1em;
+padding:10px 20px;
+border:2px solid black;
+overflow:hidden;
+text-decoration:none;
+outline:none;
+color:azure;
+background:transparent;
+font-family:'Titillium Web', sans-serif;
+font-weight:700;
+background-color: grey;
+border-radius: 3px; font-size: 20px;
+text-decoration:none;
+}
+.proceed-button:hover
+{
+color: #1673e6;
+background-color: orange;
+				box-shadow: white 	 0 0px 0px 40px inset;
+}
+select#currency:hover
+{
+color: grey;
+background-color: orange;
+				box-shadow: white 	 0 0px 0px 40px inset;
+}
+a#proceed-btn:hover
+{
+color: #1673e6;
+background-color: orange;
+				box-shadow: white 	 0 0px 0px 40px inset;
+}
+.proceed-button span {
+-webkit-transition:0.4s;
+-moz-transition:0.4s;
+-o-transition:0.4s;
+transition:0.4s;
+}
+.proceed-button:before, .proceed-button:after {
+content:'';
+position:absolute;
+top:10px;
+left:0;
+width:100%;
+text-align:center;
+opacity:0;
+-webkit-transition:.4s;
+-moz-transition:.4s;
+-o-transition:.4s;
+transition:.4s;
+}
+.proceed-button:before {
+content:attr(data-hover);
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+}
+.proceed-button:hover span, .proceed-button:active span {
+opacity:0;
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+}
+.proceed-button:hover:before, .proceed-button:active:after {
+opacity:1;
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+-webkit-transition-delay:.4s;
+-moz-transition-delay:.4s;
+-o-transition-delay:.4s;
+transition-delay:.4s;
+}
+.proceed-button:active:before {
+-webkit-transform:0.4s;
+-moz-transform:0.4s;
+-ms-transform:0.4s;
+-o-transform:0.4s;
+transform:0.4s;
+-webkit-transition-delay:0s;
+-moz-transition-delay:0s;
+-o-transition-delay:0s;
+transition-delay:0s;
+}
+div.proceed-wrapper {
+text-align: center;
+border-bottom: 1px solid black;
+}
+i.fa
+{
+	padding-left: 5px;
+}
+.btn-circle {
+width: 30px;
+height: 30px;
+font-size: 12px;
+border-radius: 5px;
+right: 25px;
+position: absolute;
+background-color: black;
+padding: 6px 0px;
+opacity: .4;
+margin-top: 4%;
+margin-right: 4%;
+color: white;
+}
+div.desc-box
+{
+	border-bottom: 3px solid black;
+}
+h4#app-id
+{
+	font-family: sans-serif;
+font-weight: 600;
+font-size: x-large;
+	align-self: center;
+	letter-spacing: 3px;
+}
+div#univ-detail
+{
+	
+}
+div#amount-charged
+{
+	border-top: 1px solid black;
+}
+div.cart-content
+{
+}
+div.main-row
+{
+	margin-top: 10px;
+}
+div.content-row
+{
+	/*background-color:beige;*/
+	border: 2px solid grey;
+	margin: 10px;
+	padding-left: 20px;
+}
+p.total-price
+{
+	border-top: 2px solid black;
+	padding-top: 10px;
+	font-weight: 900;
+	width: 200%;
+}
+div.summary-box
+{
+	
+	border: 2px grey;
+	padding: 10px;
+	padding-left: 20px;
+}
+div.summary-col
+{
+	margin: 10px;
+}
+div.coupon-box
+{
+		text-align: center;
+		padding: 20px;
+		align-self: center;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		margin-bottom: 20px;
+		background-color: ;
+}
+div.check-out
+{
+		text-align: center;
+		padding: 20px;
+		align-self: center;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		margin-top: 20px;
+		background-color: ;
+}
+div.currency-box
+{
+		text-align: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		align-self: center;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		margin-bottom: 15px;
+		font-size:large;
+		font-weight:700;
+		background-color: ;
+}
+.pay-btn
+{
+	background-color: black;
+	color: white;
+}
+a#proceed-btn
+{
+	float: none;
+	background-color: grey;
+	border:2px solid black;
+	font-weight: 700;
+}
+a.proceed-button
+{
+	text-decoration:none;
+}
+#gradient-style tr td
+{
+	font-size: 80%;
+	color: black;
+	padding: 1%; 
+}
+
+</style>
+<section class="ctrans-navbar ctrans-navbar--freeze ctrans-navbar--absolute ctrans-navbar--transparent ctrans-navbar--sticky ctrans-navbar--auto-collapse" id="menu-74">
+	<div class="ctrans-navbar__section ctrans-section" style="background-color: #1673e6;">
+		<div class="ctrans-section__container container">
+			<div class="ctrans-navbar__container">
+				<div class="ctrans-navbar__column ctrans-navbar__column--s ctrans-navbar__brand">
+					<span class="ctrans-navbar__brand-link ctrans-brand ctrans-brand--inline">
+						<span class="ctrans-brand__logo"><a href=""><img class="ctrans-navbar__brand-img ctrans-brand__img" src="assets/d.png" alt="Cleartranscripts"></a></span>
+						<span class="ctrans-brand__name"><a class="ctrans-brand__name text-white" style="color: white;
+							font-size: 32px;
+							font-family: monospace;
+							letter-spacing: 2px;
+						white-space: nowrap;" href="">CLEAR TRANSCRIPTS</a></span>
+					</span>
+				</div>
+				<div class="ctrans-navbar__hamburger ctrans-hamburger text-white"><span class="ctrans-hamburger__line"></span></div>
+				<div class="ctrans-navbar__column ctrans-navbar__menu">
+					<nav class="ctrans-navbar__menu-box ctrans-navbar__menu-box--inline-right">
+						<div class="ctrans-navbar__column"><ul class="ctrans-navbar__items ctrans-navbar__items--right ctrans-buttons ctrans-buttons--freeze ctrans-buttons--right btn-decorator ctrans-buttons--active"><li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="one-page.html" style="color: white;">HOME</a></li> <li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="slider.html" style="color: white;">GUIDELINES</a></li><li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="video-background.html" style="color: white;">VIDEO</a></li> <li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="blog.html" style="color: white;">BLOG</a></li></ul></div>
+						<div class="ctrans-navbar__column"><ul class="ctrans-navbar__items ctrans-navbar__items--right ctrans-buttons ctrans-buttons--freeze ctrans-buttons--right btn-inverse ctrans-buttons--active">
+							<li class="ctrans-navbar__item"><a class="ctrans-buttons__btn btn btn-default" href="" data-toggle="modal" data-target="#myModal">SIGN UP|SIGN IN</a></li></ul></div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section style="padding-top: 8%; padding-left: 40px; background-color: white; padding-top: 25%;	">
+		<!-- 		<div class="proceed-wrapper">
+			<button class="proceed-button" type="button" data-hover="CURRENCY OPTIONS INR/USD"><span class="proceed-text">CHANGE CURRENCY
+			<i class="fa fa-rupee">INR</i><i class="fa fa-usd">USD</i></span></button>
+					<span>	<%= form_tag show_path, :remote => true do %>
+						<%= select_tag "currency", options_for_select([ "INR", "USD" ], @current_currency ), :onchange => "this.form.submit()" %>
+			<% end %></span>
+		</div> -->
+		<% if !@order_item.nil? && @order_item.errors.any? %>
+		<div class="alert alert-danger">
+			<ul>
+				<% @order_item.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<% if @order_items.size == 0 %>
+		<p class="text-center">
+			There are no items in your application packet cart. Please
+			<%= link_to "go back", root_path %>
+			and add application packets to your cart.
+		</p>
+		<% else %>
+		<div class="container-fluid">
+			<div class="row main-row" >
+				<div class="col-md-2"></div>
+				<div class="col-md-5 cart-content">
+					<% @order_items.each do |order_item| %>
+					<div class="content-row">
+						<%= link_to "X", order_item_path(order_item), { data: { confirm: "Are you sure you wish to delete this application packet '#{order_item.transcript_application.id}' from your cart?" }, method: :delete, remote: true, class: "btn btn-circle" }	%>
+						<h4 id="app-id" style="padding-top: 3%; padding-left: 3%;">Application id
+					<%= order_item.transcript_application.id %></h4>
+					</p>
+					<div id="app-detail" style="padding-top: 3%; padding-left: 6%; padding-bottom: 3%;">
+						<table id="gradient-style">
+							<tbody>
+								<tr>
+									<td>
+										University:
+									</td>
+									<td>
+										<%= order_item.transcript_application.university_name %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										College:
+									</td>
+									<td>
+										<span ><%= order_item.transcript_application.college_name %></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Course:
+									</td>
+									<td>
+										<%= order_item.transcript_application.course.name %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Quantity:
+									</td>
+									<td>
+										<%= order_item.transcript_application.quantity.to_i %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Delivery partner:
+									</td>
+									<td>
+										<%= order_item.transcript_application.delivery_partner %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Service tax:
+									</td>
+									<td>
+										<%= current_currency %>
+										<%= order_item.transcript_application.service_tax %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Service charge:
+									</td>
+									<td>
+										<%= current_currency %>
+										<%= order_item.transcript_application.service_charge %>	
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Shipping charge:	
+									</td>
+									<td>
+										<%= current_currency %>
+										<%= order_item.transcript_application.shippingFee %>
+									</td>
+								</tr>
+								<tr>
+									<td style="font-size: 100%; font-weight: 900; ">
+										Total charge:
+									</td>
+									<td style="font-size: 100%; font-weight: 900;">
+										<%= current_currency %>
+										<%= order_item.transcript_application.total %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<% end %>
+				
+			</div>
+			<div class="col-md-3 summary-col" >
+				<div class="row">
+					<div class="coupon-box" style="zoom: 80%;">
+						<!-- 		<button class="proceed-button" type="button" data-hover="ENTER CODE"><span class="proceed-text"></span></button>
+						-->
+						<%= form_tag show_path do %>
+						<%= text_field_tag :coupon, params[:coupon] %>
+						<%= submit_tag "APPLY COUPON", class: "btn btn-large proceed-button proceed-text " %>
+						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="currency-box" style="zoom: 80%;">
+						<%= form_tag show_path do %>
+						<%= select_tag "currency", options_for_select([ "PAY IN INR", "PAY IN USD" ], @current_currency ), :onchange => "this.form.submit()" %>
+						<% end %>
+					</div>
+				</div>
+				<div class="row summary-box" style="zoom: 100%;">
+					<h4 id="app-id">SUMMARY</h4>
+					<% @order_items.each do |order_item| %>
+						<table id="gradient-style" style="zoom:200%; margin-top: 5%; margin-bottom: 5%; margin-left: 10%; width: 100% ">
+							<tbody>
+								<tr>
+									<td>
+										From university:
+									</td>
+									<td>
+										<%= order_item.transcript_application.university_name %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Total charge:
+									</td>
+									<td>
+										<%= current_currency %>
+										<%= order_item.transcript_application.total %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					<% end %>
+					<% if @discounted_total	.present? %>
+					<p class="text-muted " style="font-size: 120%; font-weight: 900; margin-left: 2%; color: black;">AMOUNT:
+						<%= current_currency %>
+						<span ><%= @total.round %></span>
+					</p>
+					<p class="text-muted " style=" margin-left: 2%; color: black;">COUPON APPLIED:
+						<span ><%= @coupon_code %></span>
+					</p>
+					<p class="text-muted " style="font-size: 120%; font-weight: 900; margin-left: 2%; color: black;">NET AMOUNT:
+						<%= current_currency %>
+						<span ><%= @discounted_total.round %></span>
+					</p>
+
+					<% else %>
+					<p class="text-muted"   style="float: right; font-size: 120%; font-weight: 900; margin-left: 2%; color: black; padding-right: 15%;" >NET AMOUNT:
+						<%= current_currency %>
+						<span ><%= @total.round %></span>
+					</p>
+					<% end %>
+				</div>
+					<div class="row">
+					<div class="check-out" style="zoom: 80%;">
+						<% if @current_currency == "PAY IN INR" || @current_currency == "INR" %>
+						<%= link_to "Proceed to pay",  {:controller => "payments", :action => "dataForm", :order_id => @order_id, :total => @total },:type =>"button", :class => "btn btn-lg pay-btn", :id => "proceed-btn" %>
+						<% else %>
+						<%= link_to "Proceed to pay", express_path ,:type =>"button", :class => "btn btn-lg pay-btn", :id => "proceed-btn" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<% end %>
+	<!-- 		<button class="btn btn-lg" type="button" id="bootlint-check" style="position:fixed;right:1%;bottom:1%;z-index:1001; background-color: #1673e6; color: white;">CHECK OUT</button>
+	<button class="btn btn-lg" type="button" id="bootlint-check" style="position:fixed;left:1%;bottom:1%;z-index:1001; background-color: #1673e6; color: white;">ADD MORE</button>
+-->	</section>
+<section style=" background-color: white;" >
+	<div class="proceed-wrapper" style="padding: 20px; ">
+		<%= link_to "ADD MORE", root_path,:type =>"button", :class => "proceed-button"%>
+	</span>
+</div>
+</section>
+<section class="ctrans-section ctrans-section--relative ctrans-section--fixed-size ctrans-parallax-background" id="msg-box3-117" style="background-image: url(assets/imac-605421-1920-1920x1275-41.jpg);">
+<div class="ctrans-overlay" style="opacity: 0.8; background-color: white;"></div>
+<div class="ctrans-section__container container ctrans-section__container--first">
+	<div class="ctrans-header ctrans-header--wysiwyg row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h3 class="ctrans-header__text">PRICING AND REFUND POLICY</h3>			
+		</div>
+	</div>
+</div>
+<div class="ctrans
+	border-radius: 3px; font-size: 30px;-section__container container ctrans-section__container--middle">
+	<div class="row">
+		<div class="ctrans-article ctrans-article--wysiwyg col-sm-8 col-sm-offset-2"><ul  style="color: black;"><li>Clear transcripts is a reliable, trusted and fastest way used by thousands of applicants daily for getting official transcripts from their home universities in cost effective manner.
+			</li><li>You may select application packets and shipping addresses to get instant pricing for the same. <br></li></ul></div>
+		</div>
+	</div>
+	<div class="ctrans-section__container container ctrans-section__container--last">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			</div>
+		</div>
+	</div>
+</section>
+<footer class="ctrans-section ctrans-section--relative ctrans-section--fixed-size" id="footer1-94" style="background-color: #1673e6;">
+	
+	<div class="ctrans-section__container container">
+		<div class="ctrans-footer ctrans-footer--wysiwyg row">
+			<div class="col-sm-12">
+				<p class="ctrans-footer__copyright"></p><p>Copyright © 2016 EduRecords Education Services Pvt Ltd <a href="https://cleartranscripts.com/bootstrap-template/license.txt" class="text-gray">License</a></p><p></p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<script type="text/javascript">
+        (function($){
+        $.extend($.easing, {
+        easeInOutCubic : function(x, t, b, c, d){
+        if ((t/=d/2) < 1) return c/2*t*t*t + b;
+        return c/2*((t-=2)*t*t + 2) + b;
+        }
+        });
+        $.fn.outerFind = function(selector){
+        return this.find(selector).addBack(selector);
+        };
+        (function($,sr){
+        // debouncing function from John Hann
+        // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+        var debounce = function (func, threshold, execAsap) {
+        var timeout;
+        return function debounced () {
+        var obj = this, args = arguments;
+        function delayed () {
+        if (!execAsap) func.apply(obj, args);
+        timeout = null;
+        };
+        if (timeout) clearTimeout(timeout);
+        else if (execAsap) func.apply(obj, args);
+        timeout = setTimeout(delayed, threshold || 100);
+        };
+        }
+        // smartresize
+        jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+        })(jQuery,'smartresize');
+        (function(){
+        var scrollbarWidth = 0, originalMargin, touchHandler = function(event){
+        event.preventDefault();
+        };
+        function getScrollbarWidth(){
+        if (scrollbarWidth) return scrollbarWidth;
+        var scrollDiv = document.createElement('div');
+        $.each({
+        top : '-9999px',
+        width  : '50px',
+        height : '50px',
+        overflow : 'scroll',
+        position : 'absolute'
+        }, function(property, value){
+        scrollDiv.style[property] = value;
+        });
+        $('body').append(scrollDiv);
+        scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        $('body')[0].removeChild(scrollDiv);
+        return scrollbarWidth;
+        }
+        })();
+        $.isMobile = function(type){
+        var reg = [];
+        var any = {
+        blackberry : 'BlackBerry',
+        android : 'Android',
+        windows : 'IEMobile',
+        opera : 'Opera Mini',
+        ios : 'iPhone|iPad|iPod'
+        };
+        type = 'undefined' == $.type(type) ? '*' : type.toLowerCase();
+        if ('*' == type) reg = $.map(any, function(v){ return v; });
+        else if (type in any) reg.push(any[type]);
+        return !!(reg.length && navigator.userAgent.match(new RegExp(reg.join('|'), 'i')));
+        };
+        var isSupportViewportUnits = (function(){
+        // modernizr implementation
+        var $elem = $('<div style="height: 50vh; position: absolute; top: -1000px; left: -1000px;">').appendTo('body');
+            var elem = $elem[0];
+            var height = parseInt(window.innerHeight / 2, 10);
+            var compStyle = parseInt((window.getComputedStyle ? getComputedStyle(elem, null) : elem.currentStyle)['height'], 10);
+            $elem.remove();
+            return compStyle == height;
+            }());
+            $(function(){
+            $('html').addClass($.isMobile() ? 'mobile' : 'desktop');
+            // .ctrans-navbar--sticky
+            $(window).scroll(function(){
+            $('.ctrans-navbar--sticky').each(function(){
+            var method = $(window).scrollTop() > 10 ? 'addClass' : 'removeClass';
+            $(this)[method]('ctrans-navbar--stuck')
+            .not('.ctrans-navbar--open')[method]('ctrans-navbar--short');
+            });
+            });
+            // .ctrans-hamburger
+            $(document).on('add.cards change.cards', function(event){
+            $(event.target).outerFind('.ctrans-hamburger:not(.ctrans-added)').each(function(){
+            $(this).addClass('ctrans-added')
+            .click(function(){
+            $(this)
+            .toggleClass('ctrans-hamburger--open')
+            .parents('.ctrans-navbar')
+            .toggleClass('ctrans-navbar--open')
+            .removeClass('ctrans-navbar--short');
+            }).parents('.ctrans-navbar').find('a:not(.ctrans-hamburger)').click(function(){
+            $('.ctrans-hamburger--open').click();
+            });
+            });
+            });
+            $(window).smartresize(function(){
+            if ($(window).width() > 991)
+            $('.ctrans-navbar--auto-collapse .ctrans-hamburger--open').click();
+            }).keydown(function(event){
+            if (27 == event.which) // ESC
+            $('.ctrans-hamburger--open').click();
+            });
+            if ($.isMobile() && navigator.userAgent.match(/Chrome/i)){ // simple fix for Chrome's scrolling
+            (function(width, height){
+            var deviceSize = [width, width];
+            deviceSize[height > width ? 0 : 1] = height;
+            $(window).smartresize(function(){
+            var windowHeight = $(window).height();
+            if ($.inArray(windowHeight, deviceSize) < 0)
+            windowHeight = deviceSize[ $(window).width() > windowHeight ? 1 : 0 ];
+            $('.ctrans-section--full-height').css('height', windowHeight + 'px');
+            });
+            })($(window).width(), $(window).height());
+            } else if (!isSupportViewportUnits){ // fallback for .ctrans-section--full-height
+            $(window).smartresize(function(){
+            $('.ctrans-section--full-height').css('height', $(window).height() + 'px');
+            });
+            $(document).on('add.cards', function(event){
+            if ($('html').hasClass('ctrans-site-loaded') && $(event.target).outerFind('.ctrans-section--full-height').length)
+            $(window).resize();
+            });
+            }
+            // .ctrans-section--16by9 (16 by 9 blocks autoheight)
+            function calculate16by9(){
+            $(this).css('height', $(this).parent().width() * 9 / 16);
+            }
+            $(window).smartresize(function(){
+            $('.ctrans-section--16by9').each(calculate16by9);
+            });
+            $(document).on('add.cards change.cards', function(event){
+            var enabled = $(event.target).outerFind('.ctrans-section--16by9');
+            if (enabled.length){
+            enabled
+            .attr('data-16by9', 'true')
+            .each(calculate16by9);
+            } else {
+            $(event.target).outerFind('[data-16by9]')
+            .css('height', '')
+            .removeAttr('data-16by9');
+            }
+            });
+            // .ctrans-parallax-background
+            if ($.fn.jarallax && !$.isMobile()){
+            $(document).on('destroy.parallax', function(event){
+            $(event.target).outerFind('.ctrans-parallax-background')
+            .jarallax('destroy')
+            .css('position', '');
+            });
+            $(document).on('add.cards change.cards', function(event){
+            $(event.target).outerFind('.ctrans-parallax-background')
+            .jarallax()
+            .css('position', 'relative');
+            });
+            }
+            // .ctrans-social-likes
+            if ($.fn.socialLikes){
+            $(document).on('add.cards', function(event){
+            $(event.target).outerFind('.ctrans-social-likes:not(.ctrans-added)').on('counter.social-likes', function(event, service, counter){
+            if (counter > 999) $('.social-likes__counter', event.target).html(Math.floor(counter / 1000) + 'k');
+            }).socialLikes({initHtml : false});
+            });
+            }
+            // .ctrans-fixed-top
+            var fixedTopTimeout, scrollTimeout, prevScrollTop = 0, fixedTop = null, isDesktop = !$.isMobile();
+            $(window).scroll(function(){
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            var scrollTop = $(window).scrollTop();
+            var scrollUp  = scrollTop <= prevScrollTop || isDesktop;
+            prevScrollTop = scrollTop;
+            if (fixedTop){
+            var fixed = scrollTop > fixedTop.breakPoint;
+            if (scrollUp){
+            if (fixed != fixedTop.fixed){
+            if (isDesktop){
+            fixedTop.fixed = fixed;
+            $(fixedTop.elm).toggleClass('is-fixed');
+            } else {
+            scrollTimeout = setTimeout(function(){
+            fixedTop.fixed = fixed;
+            $(fixedTop.elm).toggleClass('is-fixed');
+            }, 40);
+            }
+            }
+            } else {
+            fixedTop.fixed = false;
+            $(fixedTop.elm).removeClass('is-fixed');
+            }
+            }
+            });
+            $(document).on('add.cards delete.cards', function(event){
+            if (fixedTopTimeout) clearTimeout(fixedTopTimeout);
+            fixedTopTimeout = setTimeout(function(){
+            if (fixedTop){
+            fixedTop.fixed = false;
+            $(fixedTop.elm).removeClass('is-fixed');
+            }
+            $('.ctrans-fixed-top:first').each(function(){
+            fixedTop = {
+            breakPoint : $(this).offset().top + $(this).height() * 3,
+            fixed : false,
+            elm : this
+            };
+            $(window).scroll();
+            });
+            }, 650);
+            });
+            // .ctrans-google-map
+            var loadGoogleMap = function(){
+            var $this = $(this), markers = [], coord = function(pos){
+            return new google.maps.LatLng(pos[0], pos[1]);
+            };
+            var params = $.extend({
+            zoom       : 14,
+            type       : 'ROADMAP',
+            center     : null,
+            markerIcon : null,
+            showInfo   : true
+            }, eval('(' + ($this.data('google-map-params') || '{}') + ')'));
+            $this.find('.ctrans-google-map__marker').each(function(){
+            var coord = $(this).data('coordinates');
+            if (coord){
+            markers.push({
+            coord    : coord.split(/\s*,\s*/),
+            icon     : $(this).data('icon') || params.markerIcon,
+            content  : $(this).html(),
+            template : $(this).html('{{content}}').removeAttr('data-coordinates data-icon')[0].outerHTML
+            });
+            }
+            }).end().html('').addClass('ctrans-google-map--loaded');
+            if (markers.length){
+            var map = this.Map = new google.maps.Map(this, {
+            scrollwheel : false,
+            // prevent draggable on mobile devices
+            draggable   : !$.isMobile(),
+            zoom        : params.zoom,
+            mapTypeId   : google.maps.MapTypeId[params.type],
+            center      : coord(params.center || markers[0].coord)
+            });
+            $(window).smartresize(function(){
+            var center = map.getCenter();
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(center);
+            });
+            map.Geocoder = new google.maps.Geocoder;
+            map.Markers = [];
+            $.each(markers, function(i, item){
+            var marker = new google.maps.Marker({
+            map       : map,
+            position  : coord(item.coord),
+            icon      : item.icon,
+            animation : google.maps.Animation.DROP
+            });
+            var info = marker.InfoWindow = new google.maps.InfoWindow();
+            info._setContent = info.setContent;
+            info.setContent = function(content){
+            return this._setContent(content ? item.template.replace('{{content}}', content) : '');
+            };
+            info.setContent(item.content);
+            google.maps.event.addListener(marker, 'click', function(){
+            if (info.anchor && info.anchor.visible) info.close();
+            else if (info.getContent()) info.open(map, marker);
+            });
+            if (item.content && params.showInfo){
+            google.maps.event.addListenerOnce(marker, 'animation_changed', function(){
+            setTimeout(function(){
+            info.open(map, marker);
+            }, 350);
+            });
+            }
+            map.Markers.push(marker);
+            });
+            }
+            };
+            $(document).on('add.cards', function(event){
+            if (window.google && google.maps){
+            $(event.target).outerFind('.ctrans-google-map').each(function(){
+            loadGoogleMap.call(this);
+            });
+            }
+            });
+            // embedded videos
+            $(window).smartresize(function(){
+            $('.ctrans-embedded-video').each(function(){
+            $(this).height(
+            $(this).width() *
+            parseInt($(this).attr('height') || 315) /
+            parseInt($(this).attr('width') || 560)
+            );
+            });
+            });
+            $(document).on('add.cards', function(event){
+            if ($('html').hasClass('ctrans-site-loaded') && $(event.target).outerFind('iframe').length)
+            $(window).resize();
+            });
+            $(document).on('add.cards', function(event){
+            $(event.target).outerFind('[data-bg-video]').each(function(){
+            var result, videoURL = $(this).data('bg-video'), patterns = [
+            /\?v=([^&]+)/,
+            /(?:embed|\.be)\/([-a-z0-9_]+)/i,
+            /^([-a-z0-9_]+)$/i
+            ];
+            for (var i = 0; i < patterns.length; i++){
+            if (result = patterns[i].exec(videoURL)){
+            var previewURL = 'http' + ('https:' == location.protocol ? 's' : '') + ':';
+            previewURL += '//img.youtube.com/vi/' + result[1] + '/maxresdefault.jpg';
+            var $img = $('<div class="ctrans-background-video-preview">')
+                .hide()
+                .css({
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+                })
+                $('.container:eq(0)', this).before($img);
+                $('<img>').on('load', function() {
+                if (120 == (this.naturalWidth || this.width)) {
+                // selection of preview in the best quality
+                var file = this.src.split('/').pop();
+                switch (file){
+                case 'maxresdefault.jpg':
+                this.src = this.src.replace(file, 'sddefault.jpg');
+                break;
+                case 'sddefault.jpg':
+                this.src = this.src.replace(file, 'hqdefault.jpg');
+                break;
+                }
+                } else {
+                $img.css('background-image', 'url("' + this.src + '")')
+                .show();
+                }
+                }).attr('src', previewURL)
+                if ($.fn.YTPlayer && !$.isMobile()){
+                var params = eval('(' + ($(this).data('bg-video-params') || '{}') + ')');
+                $('.container:eq(0)', this).before('<div class="ctrans-background-video"></div>').prev()
+                .YTPlayer($.extend({
+                videoURL : result[1],
+                containment : 'self',
+                showControls : false,
+                mute : true
+                }, params));
+                }
+                break;
+                }
+                }
+                });
+                });
+                // init
+                $('body > *:not(style, script)').trigger('add.cards');
+                $('html').addClass('ctrans-site-loaded');
+                $(window).resize().scroll();
+                // smooth scroll
+                if (!$('html').hasClass('is-builder')){
+                $(document).click(function(e){
+                try {
+                var target = e.target;
+                do {
+                if (target.hash){
+                var useBody = /#bottom|#top/g.test(target.hash);
+                $(useBody ? 'body' : target.hash).each(function(){
+                e.preventDefault();
+                // in css sticky navbar has height 64px
+                var stickyMenuHeight = $('.ctrans-navbar--sticky').length ? 64 : 0;
+                var goTo = target.hash == '#bottom'
+                ? ($(this).height() - $(window).height())
+                : ($(this).offset().top - stickyMenuHeight);
+                $('html, body').stop().animate({
+                scrollTop: goTo
+                }, 800, 'easeInOutCubic');
+                });
+                break;
+                }
+                } while (target = target.parentNode);
+                } catch (e) {
+                // throw e;
+                }
+                });
+                }
+                });
+                })(jQuery);
+                !function() {
+                document.getElementsByClassName('engine')[0].getElementsByTagName('a')[0].removeAttribute('rel');
+                if(!document.getElementById('top-1')) {
+                var e = document.createElement("section");
+                e.id = "top-1";
+                e.className = "engine";
+                e.innerHTML = '<a href="http://mobirise.com">mobirise.com</a> Mobirise v2.6.1';
+                document.body.insertBefore(e, document.body.childNodes[0]);
+                }
+                }();
+                </script>

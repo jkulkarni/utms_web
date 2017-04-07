@@ -1,0 +1,61 @@
+// Place all the styles related to the TranscriptApplications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+div.links a.add_fields, div#shipping_addressses div.nested-fields a
+{
+    border: 1px solid rgba(33, 68, 72, 0.59);
+	border-radius: 4px;
+    background-color: orange;
+    color: white;
+    margin: 10px;
+    font-weight: 900;
+    padding: 5px;
+    font-family: inherit;
+    position: relative;
+    float: left;
+    clear: right;	
+}
+
+label[for="transcript_application_university_charge"], div.shipping-name, div.app-headers
+{
+	display: block;	
+	clear: both;
+}
+
+input[type="submit"]
+{
+	margin:15px;
+	font-size: large;
+}
+
+div.app-headers
+{
+	margin: 1em 0 0.5em 0;
+	color: #343434;
+	font-size:x-large;
+	font-family: monospace ;
+	text-transform: uppercase;
+	color: black;
+    text-shadow: 0 0 5px white, 0 0 10px white,
+             0 0 20px white, 0 0 30px white,
+             0 0 40px white;
+    margin: 15px;
+    padding: 15px;
+    border-bottom: 1px solid black;
+}
+
+div.ctrans-section__container ctrans-section__container--std-padding container
+{
+}
+
+div.details
+{
+    font-family: fantasy;
+    padding-top: 30px;
+}
+
+.sets-field {
+
+}

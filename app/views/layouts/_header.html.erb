@@ -1,0 +1,50 @@
+
+
+<section class="ctrans-navbar ctrans-navbar--freeze ctrans-navbar--absolute ctrans-navbar--transparent ctrans-navbar--sticky ctrans-navbar--auto-collapse" id="menu-74">
+   <div class="ctrans-navbar__section ctrans-section" style="background-color: #1673e6;">
+   <div class="ctrans-section__container container">
+      <div class="ctrans-navbar__container">
+         <div class="ctrans-navbar__column ctrans-navbar__column--s ctrans-navbar__brand">
+            <span class="ctrans-navbar__brand-link ctrans-brand ctrans-brand--inline">
+            <span class="ctrans-brand__logo"><a href="/">
+            <img class="ctrans-navbar__brand-img ctrans-brand__img" src="assets/logo.png" alt="Cleartranscripts"></a></span>
+            <span class="ctrans-brand__name">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <%= link_to "Application Packet: "+((@order.nil? or @order.order_items.nil?) ? 0 : @order.order_items.size).to_s, show_path, :id => 'application_packet', :class => "float:left;text-right text-nowrap", :style=>"font-size:14px;color:white;" %>
+                </div>
+              </div>
+            </span>
+            </span>
+         </div>
+         <div class="ctrans-navbar__hamburger ctrans-hamburger text-white" ><span class="ctrans-hamburger__line"></span></div>
+         <div class="ctrans-navbar__column ctrans-navbar__menu">
+            <nav class="ctrans-navbar__menu-box ctrans-navbar__menu-box--inline-right">
+               <div class="ctrans-navbar__column">
+                  <ul class="ctrans-navbar__items ctrans-navbar__items--right  ctrans-buttons ctrans-buttons--freeze ctrans-buttons--right btn-decorator ctrans-buttons--active">
+                     <li class="ctrans-navbar__item">
+                        <a class="ctrans-buttons__link btn text-white" href="/" style="color: white;">HOME</a>
+                     </li>
+                    <li class="ctrans-navbar__item">
+                      <a class="ctrans-buttons__link btn text-white" href="/status" style="color: white;">APPLICATION STATUS</a>
+                    </li>
+                     <li class="ctrans-navbar__item">
+                       <a class="ctrans-buttons__link btn text-white" href="<%=testimonials_path%>" style="color: white;">TESTIMONIALS</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="ctrans-navbar__column">
+                    <ul class="ctrans-navbar__items ctrans-navbar__items--right ctrans-buttons ctrans-buttons--freeze ctrans-buttons--right btn-inverse ctrans-buttons--active">
+                        <li class="ctrans-navbar__item">
+                            <%= render 'devise/menu/login_items' %>
+                        </li>
+                        <li class="ctrans-navbar__item">
+                            <%= render 'devise/menu/registration_items' %>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+         </div>
+      </div>
+   </div>
+</section>

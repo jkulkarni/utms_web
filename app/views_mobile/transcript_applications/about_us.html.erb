@@ -1,0 +1,818 @@
+<style>
+input.apply-now
+{
+text-align: center;
+margin-left: 45%;
+font-size: 150%;
+background-color: orange;
+}
+#dark-select .chzn-container .chzn-results li {
+color: #999999;
+}
+#dark-select .chzn-container .chzn-drop, .chzn-container-single .chzn-single {
+background-color: #252525;
+color: #999999;
+}
+/* Some IE 7-9 fun with this next one - filter likes to override background */
+#dark-select .chzn-container-single .chzn-single {
+background-color: #000000;
+background-image: none;
+background: #000000 none top left no-repeat;
+filter: none;
+border: none;
+display: block;
+height: 30px;
+}
+#dark-select .chzn-container .chzn-drop {
+border: 1px solid #121212;
+}
+#dark-select .chzn-container-single .chzn-single div {
+background-image: -webkit-gradient(linear, left bottom, left top,
+color-stop(0, #333333), color-stop(0.6, #121212));
+background-image: -webkit-linear-gradient(center bottom, #333333 0%, #121212 60%);
+background-image: -moz-linear-gradient(center bottom, #333333 0%, #121212 60%);
+background-image: -o-linear-gradient(bottom, #333333 0%, #121212 60%);
+background-image: -ms-linear-gradient(top, #333333 0%,#121212 60%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333',
+endColorstr='#121212',GradientType=0 );
+background-image: linear-gradient(top, #333333 0%,#121212 60%);
+border-left: 1px solid #252525;
+}
+#dark-select .chzn-container-active .chzn-single-with-drop {
+box-shadow: none;
+}
+#dark-select .chzn-container .chzn-results .highlighted {
+background: #333333;
+color: #eeeeee;
+}
+#dark-select .chzn-container .chzn-results .no-results {
+background: #333;
+}
+#dark-select .chzn-container .chzn-results li em {
+background: none;
+}
+/* dark sprite overrides */
+#dark-select .chzn-container-single .chzn-single abbr {
+background: url('https://www.exratione.com/assets/chosen-sprite-dark.png') right top no-repeat;
+}
+#dark-select .chzn-container-single .chzn-single div b {
+background: url('https://www.exratione.com/assets/chosen-sprite-dark.png') no-repeat 0 1px;
+}
+#dark-select .chzn-container-single .chzn-search input,
+#dark-select .chzn-rtl .chzn-search input {
+background: #333 url('https://www.exratione.com/assets/chosen-sprite-dark.png') no-repeat 100% -22px;
+color: #999999;
+border: 1px solid #555555;
+}
+#dark-select .chzn-container-multi .chzn-choices .search-choice .search-choice-close {
+background: url('https://www.exratione.com/assets/chosen-sprite-dark.png') right top no-repeat;
+}
+</style>
+<style>
+.form-group {
+margin-top:15px;
+margin-bottom:15px;
+display:flex;
+}
+#search-for-links-input {
+border-radius:4px 0px 0px 4px;
+}
+.btn.btn-default {
+color:#ffffff;
+background-color:steelblue;
+background-image:linear-gradient(to bottom, steelblue, steelblue);
+border-color:steelblue steelblue steelblue;
+border-radius:0px 4px 4px 0px;
+margin-bottom:-1px;
+margin-top:-1px;
+}
+.btn.btn-default:hover {
+color:#ffffff;
+background-color:orange;
+background-image:linear-gradient(to bottom, orange, orange);
+border-color:orange orange orange;
+border-radius:0px 4px 4px 0px;
+}
+.search-form {
+margin:40px 5px;
+font:normal 12px sans-serif;
+box-shadow:1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+.search-form div.input-group-addon {
+background:#fff;
+color:#80A3BD;
+border-bottom-left-radius:2px;
+border-top-left-radius:2px;
+border:1px solid #b6c3cd;
+border-right:0;
+}
+.search-form .input-group input {
+background-color:#ffffff;
+box-shadow:none;
+color:#4E565C;
+outline:none;
+border:1px solid #b6c3cd;
+border-right:0;
+border-left:0;
+}
+.search-form div.input-group-btn button {
+border-bottom-right-radius:2px;
+border-top-right-radius:2px;
+background:#6caee0;
+box-shadow:1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+color:#ffffff;
+border-color:#6caee0;
+outline:none;
+opacity:0.9;
+}
+.search-form div.input-group-btn button:hover {
+opacity:1;
+}
+.search-form div.input-group-btn button:focus:active {
+background-color:steelblue;
+color:#ffffff;
+outline:none;
+}
+.form-control-input
+{
+display: block;
+width: 100%;
+height: 40px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+color: #555;
+background-color: #fff;
+background-image: none;
+border: 1px solid #ccc;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.text-white
+{
+color: white;
+}
+</style>
+<body>
+    <section class="ctrans-navbar ctrans-navbar--freeze ctrans-navbar--absolute ctrans-navbar--transparent ctrans-navbar--sticky ctrans-navbar--auto-collapse" id="menu-74">
+        <div class="ctrans-navbar__section ctrans-section" style="background-color: #1673e6;">
+            <div class="ctrans-section__container container">
+                <div class="ctrans-navbar__container">
+                    <div class="ctrans-navbar__column ctrans-navbar__column--s ctrans-navbar__brand">
+                        <span class="ctrans-navbar__brand-link ctrans-brand ctrans-brand--inline">
+                            <span class="ctrans-brand__logo"><a href="">
+                            <img class="ctrans-navbar__brand-img ctrans-brand__img" src="assets/d.png" alt="Cleartranscripts"></a></span>
+                            <span class="ctrans-brand__name"><a class="ctrans-brand__name text-white" style="color: white; white-space: nowrap;" href="">CLEAR TRANSCRIPTS</a></span>
+                        </span>
+                    </div>
+                    <div class="ctrans-navbar__hamburger ctrans-hamburger text-white"><span class="ctrans-hamburger__line"></span></div>
+                    <div class="ctrans-navbar__column ctrans-navbar__menu">
+                        <nav class="ctrans-navbar__menu-box ctrans-navbar__menu-box--inline-right">
+                            <div class="ctrans-navbar__column"><ul class="ctrans-navbar__items ctrans-navbar__items--right  ctrans-buttons ctrans-buttons--freeze ctrans-buttons--right btn-decorator ctrans-buttons--active"><li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="one-page.html" style="color: white;">HOME</a></li> <li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="slider.html" style="color: white;">GUIDELINES</a></li><li class="ctrans-navbar__item"><a class="ctrans-buttons__link btn text-white" href="video-background.html" style="color: white;">VIDEO</a></li> <li class="ctrans-navbar__item">
+                            <%= link_to "ABOUT US", about_us_path, :class => "ctrans-buttons__link btn text-white" %>
+                        </li></ul></div>
+                        <div class="ctrans-navbar__column"><ul class="ctrans-navbar__items ctrans-navbar__items--right ctrans-buttons ctrans-buttons--freeze ctrans-buttons--right btn-inverse ctrans-buttons--active">
+                            <li class="ctrans-navbar__item"><a class="ctrans-buttons__btn btn btn-default" href="" data-toggle="modal" data-target="#myModal">SIGN UP|SIGN IN</a></li></ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ctrans-section" id="header3-109" style="padding-top: 25%; ">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h3 style="font-size: 300%;" class="ctrans-header__text">ABOUT US:</h3>
+        <p style="font-size: 150%; padding-top:2%;">ClearTranscripts is a simple, reliable and transparent service to obtain official transcripts from universities in India. It is our mission here to simplify the exchange of transcripts. Our Motto is Student First. We create shared value to students, Indian universities, universities abroad and employers by offering a simple and reliable transcripts delivery service.</p>
+        <div class="row" style="padding-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+            <h1>Contacts: </h1></div>
+        </div>
+        <div style="font-size: 150%;">
+        <div>
+            <div class="container" style="padding-top: 2%; border-bottom: 2px solid grey; padding-bottom: 2%; border-top: 2px solid grey;">
+                <div class="row">
+                    <div class="col-md-3">Address</div>
+                    <div class="col-md-9">
+                        <table>
+                            <tr>
+                                <td>
+                                    <p>ClearTranscripts</gs></p>
+                                    <p>#16, 10th Main, Jayanagar 3rd Block, Bengaluru&nbsp;560011, KA, India.</p>
+                                    <p>&nbsp;</p>
+                                    <p><strong>Technology development:</strong></p>
+                                    <p>#202, IIIT-B Innovation Center, Electronics City, Bangalore 560100.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container" style="padding-top: 2%; border-bottom: 2px solid grey; padding-bottom: 2%;">
+                <div class="row">
+                    <div class="col-md-3">Phone</div>
+                    <div class="col-md-9">
+                        <table>
+                            <tr>
+                                <td>
+                                    <p>India:&nbsp;+918030752740</p>
+                                    <p><span>Mon - Fri 9am - 6pm IST</span></p>
+                                    <p><span>Intl: +19174844990</span></p>
+                                    <p><span>Mon - Fri 11am -&nbsp;8pm EST</span></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container"  style="padding-top: 2%; border-bottom: 2px solid grey; padding-bottom: 2%;">
+                <div class="row">
+                    <div class="col-md-3">Email</div>
+                    <div class="col-md-9">customerservice@cleartranscripts.com</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container"  style="padding-top: 2%; border-bottom: 2px solid grey; padding-bottom: 2%;" >
+                <div class="row">
+                    <div class="col-md-3">Skype</div>
+                    <div class="col-md-9">customerservice_856</div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div style="font-size: 120%;">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0" style="padding-top: 5%; font-size: 150%;"><p><strong>To track your application status:</strong></p></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0"><p><strong><a title="application status" href="http://www.cleartranscripts.com/pages/application-status">http://www.cleartranscripts.org/pages/application-status</a></strong></p></div>
+        </div>
+        <div style="font-size: 150%;">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0" style="padding-top: 5%; padding-bottom: 1%;"><p><strong><span>Customer Service Escalation Chain:</span></strong></p>
+        </div>
+        </div>
+        </div>
+        <div style="font-size: 150%; padding-bottom: 5%;">
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">Regular requests</div>
+                    <div class="col-md-8">customerservice@cleartranscripts.com</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">First Level Escalation</div>
+                    <div class="col-md-8">vasundarak@cleartranscripts.com</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">Second Level Escalation</div>
+                    <div class="col-md-8">roopashree@cleartranscripts.com  </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="ctrans-section" id="content1-96">
+<div class="ctrans-section__container container ctrans-section__container--middle">
+    <div class="ctrans-article ctrans-article--wysiwyg col-sm-8 col-sm-offset-2">
+    </div>
+</section>
+
+<section class="ctrans-section ctrans-section--relative ctrans-section--fixed-size" id="contacts2-90" style="background-color: rgb(60, 60, 60);">
+    <div class="ctrans-section__container container">
+        <div class="ctrans-contacts ctrans-contacts--wysiwyg row">
+            <div class="col">
+                <figure class="ctrans-figure ctrans-figure--wysiwyg ctrans-figure--full-width ctrans-figure--no-bg">
+                    <div class="ctrans-figure__map ctrans-figure__map--short ctrans-google-map">
+                        <p class="ctrans-google-map__marker" data-coordinates="12.9329463,77.58386919999998"></p>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <footer class="ctrans-section ctrans-section--relative ctrans-section--fixed-size" id="footer1-91" style="background-color: #1673e6;">
+        <div class="ctrans-section__container container">
+            <div class="ctrans-footer ctrans-footer--wysiwyg row">
+                <div class="col-sm-12">
+                    <p class="ctrans-footer__copyright"></p><p style="color: white;">Copyright © 2016 EduRecords Education Services Pvt Ltd  <a href="license.txt" style="color: white;">License</a></p><p></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+<script type="text/javascript">
+(function($){
+$.extend($.easing, {
+easeInOutCubic : function(x, t, b, c, d){
+if ((t/=d/2) < 1) return c/2*t*t*t + b;
+return c/2*((t-=2)*t*t + 2) + b;
+}
+});
+$.fn.outerFind = function(selector){
+return this.find(selector).addBack(selector);
+};
+(function($,sr){
+// debouncing function from John Hann
+// http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+var debounce = function (func, threshold, execAsap) {
+var timeout;
+return function debounced () {
+var obj = this, args = arguments;
+function delayed () {
+if (!execAsap) func.apply(obj, args);
+timeout = null;
+};
+if (timeout) clearTimeout(timeout);
+else if (execAsap) func.apply(obj, args);
+timeout = setTimeout(delayed, threshold || 100);
+};
+}
+// smartresize
+jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+})(jQuery,'smartresize');
+(function(){
+var scrollbarWidth = 0, originalMargin, touchHandler = function(event){
+event.preventDefault();
+};
+function getScrollbarWidth(){
+if (scrollbarWidth) return scrollbarWidth;
+var scrollDiv = document.createElement('div');
+$.each({
+top : '-9999px',
+width  : '50px',
+height : '50px',
+overflow : 'scroll',
+position : 'absolute'
+}, function(property, value){
+scrollDiv.style[property] = value;
+});
+$('body').append(scrollDiv);
+scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+$('body')[0].removeChild(scrollDiv);
+return scrollbarWidth;
+}
+})();
+$.isMobile = function(type){
+var reg = [];
+var any = {
+blackberry : 'BlackBerry',
+android : 'Android',
+windows : 'IEMobile',
+opera : 'Opera Mini',
+ios : 'iPhone|iPad|iPod'
+};
+type = 'undefined' == $.type(type) ? '*' : type.toLowerCase();
+if ('*' == type) reg = $.map(any, function(v){ return v; });
+else if (type in any) reg.push(any[type]);
+return !!(reg.length && navigator.userAgent.match(new RegExp(reg.join('|'), 'i')));
+};
+var isSupportViewportUnits = (function(){
+// modernizr implementation
+var $elem = $('<div style="height: 50vh; position: absolute; top: -1000px; left: -1000px;">').appendTo('body');
+    var elem = $elem[0];
+    var height = parseInt(window.innerHeight / 2, 10);
+    var compStyle = parseInt((window.getComputedStyle ? getComputedStyle(elem, null) : elem.currentStyle)['height'], 10);
+    $elem.remove();
+    return compStyle == height;
+    }());
+    $(function(){
+    $('html').addClass($.isMobile() ? 'mobile' : 'desktop');
+    // .ctrans-navbar--sticky
+    $(window).scroll(function(){
+    $('.ctrans-navbar--sticky').each(function(){
+    var method = $(window).scrollTop() > 10 ? 'addClass' : 'removeClass';
+    $(this)[method]('ctrans-navbar--stuck')
+    .not('.ctrans-navbar--open')[method]('ctrans-navbar--short');
+    });
+    });
+    // .ctrans-hamburger
+    $(document).on('add.cards change.cards', function(event){
+    $(event.target).outerFind('.ctrans-hamburger:not(.ctrans-added)').each(function(){
+    $(this).addClass('ctrans-added')
+    .click(function(){
+    $(this)
+    .toggleClass('ctrans-hamburger--open')
+    .parents('.ctrans-navbar')
+    .toggleClass('ctrans-navbar--open')
+    .removeClass('ctrans-navbar--short');
+    }).parents('.ctrans-navbar').find('a:not(.ctrans-hamburger)').click(function(){
+    $('.ctrans-hamburger--open').click();
+    });
+    });
+    });
+    $(window).smartresize(function(){
+    if ($(window).width() > 991)
+    $('.ctrans-navbar--auto-collapse .ctrans-hamburger--open').click();
+    }).keydown(function(event){
+    if (27 == event.which) // ESC
+    $('.ctrans-hamburger--open').click();
+    });
+    if ($.isMobile() && navigator.userAgent.match(/Chrome/i)){ // simple fix for Chrome's scrolling
+    (function(width, height){
+    var deviceSize = [width, width];
+    deviceSize[height > width ? 0 : 1] = height;
+    $(window).smartresize(function(){
+    var windowHeight = $(window).height();
+    if ($.inArray(windowHeight, deviceSize) < 0)
+    windowHeight = deviceSize[ $(window).width() > windowHeight ? 1 : 0 ];
+    $('.ctrans-section--full-height').css('height', windowHeight + 'px');
+    });
+    })($(window).width(), $(window).height());
+    } else if (!isSupportViewportUnits){ // fallback for .ctrans-section--full-height
+    $(window).smartresize(function(){
+    $('.ctrans-section--full-height').css('height', $(window).height() + 'px');
+    });
+    $(document).on('add.cards', function(event){
+    if ($('html').hasClass('ctrans-site-loaded') && $(event.target).outerFind('.ctrans-section--full-height').length)
+    $(window).resize();
+    });
+    }
+    // .ctrans-section--16by9 (16 by 9 blocks autoheight)
+    function calculate16by9(){
+    $(this).css('height', $(this).parent().width() * 9 / 16);
+    }
+    $(window).smartresize(function(){
+    $('.ctrans-section--16by9').each(calculate16by9);
+    });
+    $(document).on('add.cards change.cards', function(event){
+    var enabled = $(event.target).outerFind('.ctrans-section--16by9');
+    if (enabled.length){
+    enabled
+    .attr('data-16by9', 'true')
+    .each(calculate16by9);
+    } else {
+    $(event.target).outerFind('[data-16by9]')
+    .css('height', '')
+    .removeAttr('data-16by9');
+    }
+    });
+    // .ctrans-parallax-background
+    if ($.fn.jarallax && !$.isMobile()){
+    $(document).on('destroy.parallax', function(event){
+    $(event.target).outerFind('.ctrans-parallax-background')
+    .jarallax('destroy')
+    .css('position', '');
+    });
+    $(document).on('add.cards change.cards', function(event){
+    $(event.target).outerFind('.ctrans-parallax-background')
+    .jarallax()
+    .css('position', 'relative');
+    });
+    }
+    // .ctrans-social-likes
+    if ($.fn.socialLikes){
+    $(document).on('add.cards', function(event){
+    $(event.target).outerFind('.ctrans-social-likes:not(.ctrans-added)').on('counter.social-likes', function(event, service, counter){
+    if (counter > 999) $('.social-likes__counter', event.target).html(Math.floor(counter / 1000) + 'k');
+    }).socialLikes({initHtml : false});
+    });
+    }
+    // .ctrans-fixed-top
+    var fixedTopTimeout, scrollTimeout, prevScrollTop = 0, fixedTop = null, isDesktop = !$.isMobile();
+    $(window).scroll(function(){
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    var scrollTop = $(window).scrollTop();
+    var scrollUp  = scrollTop <= prevScrollTop || isDesktop;
+    prevScrollTop = scrollTop;
+    if (fixedTop){
+    var fixed = scrollTop > fixedTop.breakPoint;
+    if (scrollUp){
+    if (fixed != fixedTop.fixed){
+    if (isDesktop){
+    fixedTop.fixed = fixed;
+    $(fixedTop.elm).toggleClass('is-fixed');
+    } else {
+    scrollTimeout = setTimeout(function(){
+    fixedTop.fixed = fixed;
+    $(fixedTop.elm).toggleClass('is-fixed');
+    }, 40);
+    }
+    }
+    } else {
+    fixedTop.fixed = false;
+    $(fixedTop.elm).removeClass('is-fixed');
+    }
+    }
+    });
+    $(document).on('add.cards delete.cards', function(event){
+    if (fixedTopTimeout) clearTimeout(fixedTopTimeout);
+    fixedTopTimeout = setTimeout(function(){
+    if (fixedTop){
+    fixedTop.fixed = false;
+    $(fixedTop.elm).removeClass('is-fixed');
+    }
+    $('.ctrans-fixed-top:first').each(function(){
+    fixedTop = {
+    breakPoint : $(this).offset().top + $(this).height() * 3,
+    fixed : false,
+    elm : this
+    };
+    $(window).scroll();
+    });
+    }, 650);
+    });
+    // .ctrans-google-map
+    var loadGoogleMap = function(){
+    var $this = $(this), markers = [], coord = function(pos){
+    return new google.maps.LatLng(pos[0], pos[1]);
+    };
+    var params = $.extend({
+    zoom       : 14,
+    type       : 'ROADMAP',
+    center     : null,
+    markerIcon : null,
+    showInfo   : true
+    }, eval('(' + ($this.data('google-map-params') || '{}') + ')'));
+    $this.find('.ctrans-google-map__marker').each(function(){
+    var coord = $(this).data('coordinates');
+    if (coord){
+    markers.push({
+    coord    : coord.split(/\s*,\s*/),
+    icon     : $(this).data('icon') || params.markerIcon,
+    content  : $(this).html(),
+    template : $(this).html('{{content}}').removeAttr('data-coordinates data-icon')[0].outerHTML
+    });
+    }
+    }).end().html('').addClass('ctrans-google-map--loaded');
+    if (markers.length){
+    var map = this.Map = new google.maps.Map(this, {
+    scrollwheel : false,
+    // prevent draggable on mobile devices
+    draggable   : !$.isMobile(),
+    zoom        : params.zoom,
+    mapTypeId   : google.maps.MapTypeId[params.type],
+    center      : coord(params.center || markers[0].coord)
+    });
+    $(window).smartresize(function(){
+    var center = map.getCenter();
+    google.maps.event.trigger(map, 'resize');
+    map.setCenter(center);
+    });
+    map.Geocoder = new google.maps.Geocoder;
+    map.Markers = [];
+    $.each(markers, function(i, item){
+    var marker = new google.maps.Marker({
+    map       : map,
+    position  : coord(item.coord),
+    icon      : item.icon,
+    animation : google.maps.Animation.DROP
+    });
+    var info = marker.InfoWindow = new google.maps.InfoWindow();
+    info._setContent = info.setContent;
+    info.setContent = function(content){
+    return this._setContent(content ? item.template.replace('{{content}}', content) : '');
+    };
+    info.setContent(item.content);
+    google.maps.event.addListener(marker, 'click', function(){
+    if (info.anchor && info.anchor.visible) info.close();
+    else if (info.getContent()) info.open(map, marker);
+    });
+    if (item.content && params.showInfo){
+    google.maps.event.addListenerOnce(marker, 'animation_changed', function(){
+    setTimeout(function(){
+    info.open(map, marker);
+    }, 350);
+    });
+    }
+    map.Markers.push(marker);
+    });
+    }
+    };
+    $(document).on('add.cards', function(event){
+    if (window.google && google.maps){
+    $(event.target).outerFind('.ctrans-google-map').each(function(){
+    loadGoogleMap.call(this);
+    });
+    }
+    });
+    // embedded videos
+    $(window).smartresize(function(){
+    $('.ctrans-embedded-video').each(function(){
+    $(this).height(
+    $(this).width() *
+    parseInt($(this).attr('height') || 315) /
+    parseInt($(this).attr('width') || 560)
+    );
+    });
+    });
+    $(document).on('add.cards', function(event){
+    if ($('html').hasClass('ctrans-site-loaded') && $(event.target).outerFind('iframe').length)
+    $(window).resize();
+    });
+    $(document).on('add.cards', function(event){
+    $(event.target).outerFind('[data-bg-video]').each(function(){
+    var result, videoURL = $(this).data('bg-video'), patterns = [
+    /\?v=([^&]+)/,
+    /(?:embed|\.be)\/([-a-z0-9_]+)/i,
+    /^([-a-z0-9_]+)$/i
+    ];
+    for (var i = 0; i < patterns.length; i++){
+    if (result = patterns[i].exec(videoURL)){
+    var previewURL = 'http' + ('https:' == location.protocol ? 's' : '') + ':';
+    previewURL += '//img.youtube.com/vi/' + result[1] + '/maxresdefault.jpg';
+    var $img = $('<div class="ctrans-background-video-preview">')
+        .hide()
+        .css({
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+        })
+        $('.container:eq(0)', this).before($img);
+        $('<img>').on('load', function() {
+        if (120 == (this.naturalWidth || this.width)) {
+        // selection of preview in the best quality
+        var file = this.src.split('/').pop();
+        switch (file){
+        case 'maxresdefault.jpg':
+        this.src = this.src.replace(file, 'sddefault.jpg');
+        break;
+        case 'sddefault.jpg':
+        this.src = this.src.replace(file, 'hqdefault.jpg');
+        break;
+        }
+        } else {
+        $img.css('background-image', 'url("' + this.src + '")')
+        .show();
+        }
+        }).attr('src', previewURL)
+        if ($.fn.YTPlayer && !$.isMobile()){
+        var params = eval('(' + ($(this).data('bg-video-params') || '{}') + ')');
+        $('.container:eq(0)', this).before('<div class="ctrans-background-video"></div>').prev()
+        .YTPlayer($.extend({
+        videoURL : result[1],
+        containment : 'self',
+        showControls : false,
+        mute : true
+        }, params));
+        }
+        break;
+        }
+        }
+        });
+        });
+        // init
+        $('body > *:not(style, script)').trigger('add.cards');
+        $('html').addClass('ctrans-site-loaded');
+        $(window).resize().scroll();
+        // smooth scroll
+        if (!$('html').hasClass('is-builder')){
+        $(document).click(function(e){
+        try {
+        var target = e.target;
+        do {
+        if (target.hash){
+        var useBody = /#bottom|#top/g.test(target.hash);
+        $(useBody ? 'body' : target.hash).each(function(){
+        e.preventDefault();
+        // in css sticky navbar has height 64px
+        var stickyMenuHeight = $('.ctrans-navbar--sticky').length ? 64 : 0;
+        var goTo = target.hash == '#bottom'
+        ? ($(this).height() - $(window).height())
+        : ($(this).offset().top - stickyMenuHeight);
+        $('html, body').stop().animate({
+        scrollTop: goTo
+        }, 800, 'easeInOutCubic');
+        });
+        break;
+        }
+        } while (target = target.parentNode);
+        } catch (e) {
+        // throw e;
+        }
+        });
+        }
+        });
+        })(jQuery);
+        !function() {
+        document.getElementsByClassName('engine')[0].getElementsByTagName('a')[0].removeAttribute('rel');
+        if(!document.getElementById('top-1')) {
+        var e = document.createElement("section");
+        e.id = "top-1";
+        e.className = "engine";
+        e.innerHTML = '<a href="http://mobirise.com">mobirise.com</a> Mobirise v2.6.1';
+        document.body.insertBefore(e, document.body.childNodes[0]);
+        }
+        }();
+        </script>
+        <script type="text/javascript">
+        $(function() {
+        var availableTags = [
+        "Bangalore",
+        "Chennai",
+        "Hyderabad",
+        "Mumbai",
+        "New Delhi",
+        "Ajmer",
+        "Anantapur",
+        "Aurangabad",
+        "Belgaum",
+        "Calicut",
+        "Chidambaram",
+        "Cochin",
+        "Coimbatore",
+        "Dharwad",
+        "Ghaziabad  ",
+        "Gulbarga",
+        "Kakinada",
+        "Kannur",
+        "Karaikudi",
+        "Kolhapur",
+        "Kottayam",
+        "Madurai",
+        "Mangalore",
+        "Manipal",
+        "Mysore",
+        "Nagpur",
+        "Nashik",
+        "Noida",
+        "Pune",
+        "Pondicherry",
+        "Salem",
+        "Shimoga",
+        "Thanjavur",
+        "Thiruvananthapuram",
+        "Tirupati",
+        "Tirunelveli",
+        "Trichy",
+        "Vellore",
+        "Vijayawada",
+        "Vishakapatnam",
+        "Warangal"
+        ];
+        $(".autocomplete").autocomplete({
+        source: availableTags
+        });
+        });
+        </script>
+        <style type="text/css">
+        .submit
+        {
+        background: #1673e6;
+        height: 55px;
+        font-family: sans-serif;
+        letter-spacing: 10px;
+        padding-left: 3%;
+        padding-right: 3%;
+        border-radius: 10px;
+        }
+        .form-location
+        {
+        background-color: white;
+        }
+        .ui-autocomplete {
+        position: absolute;
+        z-index: 1000;
+        cursor: default;
+        padding: 0;
+        margin-top: 2px;
+        list-style: none;
+        background-color: #ffffff;
+        border: 1px solid #ccc
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .ui-autocomplete > li {
+        padding: 3px 20px;
+        }
+        .ui-autocomplete > li.ui-state-focus {
+        background-color: #DDD;
+        }
+        .ui-helper-hidden-accessible {
+        display: none;
+        }
+        .location-input
+        {
+        height: 60px;
+        margin: 1%
+        width: 30px important!;
+        text-decoration: none;
+        font-size: 200%;
+        width: 100%;
+        width: 800px !important;
+        }
+        </style>

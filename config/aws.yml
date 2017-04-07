@@ -1,0 +1,3 @@
+default: &defaults
+  access_key_id: 'AKIAJEQJARL63DCAK6OQ'
+  secret_access_key: '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'

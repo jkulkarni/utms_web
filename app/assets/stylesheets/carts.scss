@@ -1,0 +1,73 @@
+// Place all the styles related to the Carts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+}
+
+div#container.container {
+  width:100%;
+}
+
+th.application {
+  width:50%;
+}
+
+th.amount {
+  width:30%;
+}
+
+th.quantity {
+  width:20%;
+}
+
+div#header.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  font-weight:800;
+}
+
+div#header.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  font-weight:800;
+}
+
+div#header.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  font-weight:800;
+}
+
+div#application.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  font-weight:800;
+  font-family:'Raleway';
+  background-color:skyblue;
+  width:50%;
+}
+
+div#amount.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  font-weight:800;
+  font-family:'Raleway';
+  background-color:skyblue;
+  width:30%;
+}
+
+div#quantity.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  font-weight:800;
+  font-family:'Raleway';
+  background-color:skyblue;
+  width:20%;
+}
+
+div#application-content.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  width:50%;
+}
+
+div#amount-content.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  width:30%;
+}
+
+div#quantity-content.col-lg-4.col-md-4.col-sm-4.col-xs-12 {
+  width:20%;
+}
+
+a#proceed-btn {
+  float:right;
+}
+
+
