@@ -50,7 +50,7 @@ test:
 production:
   <<: *default
   database: sandbar_new_production
-  username: root
-  password: password123
-  host: aazj34ffa3d14l.cux5cquzisd4.us-west-2.rds.amazonaws.com
+  username: 
+  password: 
+  host: 
   port: 3306
