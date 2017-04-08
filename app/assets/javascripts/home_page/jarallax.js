@@ -1,3 +1,4 @@
+
 /*!
  * Name    : Just Another Parallax [Jarallax]
  * Version : 1.1.0
