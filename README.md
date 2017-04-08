@@ -21,6 +21,9 @@ Demo Screens:
 <img src="public/assets/demo_screen2.png"/>
 <img src="public/assets/demo_screen3.png"/>
 
+Developers:
+Himanshu Mehta, Jayaprakash Kulkarni
+
 License:
 Licensed under the Affero General Public License AGPL v3 (the "License").
 You may obtain a copy of the License at
