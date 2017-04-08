@@ -48,8 +48,8 @@ Rails.application.configure do
     :port                 => 25,
     :enable_starttls_auto => true,
     :domain               => 'cleartranscripts.com',
-    :user_name            => 'AKIAI7R36NNGR2URVQWA',
-    :password             => 'AlLc0NkOmUpYu0lkJmqym6Z74mMFulwcbF+DVW0yvuHs',
+    :user_name            => '',
+    :password             => '',
     :authentication       => :login
   }
 
@@ -79,9 +79,9 @@ Rails.application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
-      :login => "himanshu-facilitator_api1.cleartranscripts.com",
-      :password => "F2HF6JFMSPE8H46V",
-      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31ADIDczXSEXuqAYYI9K5rrQbA-S0S"
+      :login => "<<your login>>",
+      :password => "<<your password>>",
+      :signature => "<<your signature>>"
     }
     # ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
