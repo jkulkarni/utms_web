@@ -69,7 +69,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { :host => 'utms.cleartranscripts.com' }
+  config.action_mailer.default_url_options = { :host => '<<mailer host>>' }
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -78,9 +78,9 @@ Rails.application.configure do
       :address              => 'email-smtp.us-west-2.amazonaws.com',
       :port                 => 25,
       :enable_starttls_auto => true,
-      :domain               => 'cleartranscripts.com',
-      :user_name            => 'AKIAI7R36NNGR2URVQWA',
-      :password             => 'AlLc0NkOmUpYu0lkJmqym6Z74mMFulwcbF+DVW0yvuHs',
+      :domain               => '<<your domain>>',
+      :user_name            => '<<aws userkey>',
+      :password             => '<<aws password>>',
       :authentication       => :login
   }
 
