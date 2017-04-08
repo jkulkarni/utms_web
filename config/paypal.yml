@@ -3,4 +3,4 @@ development:
   app_host: http://our_ngrok_url
 production:
   paypal_host: https://www.paypal.com
-  app_host: http://www.cleartranscripts.com
+  app_host: <<your host url>>
